@@ -40,8 +40,7 @@
 
 
         <li class="nav-item dropdown has-arrow flag-nav">
-            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="javascript:void(0);"
-                role="button">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="javascript:void(0);" role="button">
                 <img src="{{asset('assets/img/flags/us1.png')}}" alt="" height="20">
             </a>
             <div class="dropdown-menu dropdown-menu-right">
@@ -173,18 +172,33 @@
                         <span class="user-img"><img src="{{asset('assets/img/profiles/avator1.jpg')}}" alt="">
                             <span class="status online"></span></span>
                         <div class="profilesets">
-                            <h6>John Doe</h6>
-                            <h5>Admin</h5>
+                            <h6>{{auth()->user()->name}}</h6>
+                            <h5>
+                                @foreach (auth()->user()->roles->take(1) as $role)
+                                {{$role->name}}
+                                @endforeach
+                            </h5>
                         </div>
                     </div>
                     <hr class="m-0">
-                    <a class="dropdown-item" href="profile.html"> <i class="me-2" data-feather="user"></i> My
-                        Profile</a>
+                    <a class="dropdown-item" href="{{route('profile.edit')}}">
+                        <i class="me-2" data-feather="user"></i>
+                        {{_('My Profile')}}
+                    </a>
                     <a class="dropdown-item" href="generalsettings.html"><i class="me-2"
                             data-feather="settings"></i>Settings</a>
                     <hr class="m-0">
-                    <a class="dropdown-item logout pb-0" href="signin.html"><img
-                            src="{{asset('assets/img/icons/log-out.svg')}}" class="me-2" alt="img">Logout</a>
+
+
+                    <!-- Authentication -->
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <a class="dropdown-item logout pb-0" href="{{route('logout')}}"
+                            onclick="event.preventDefault(); this.closest('form').submit();">
+                            <img src="{{asset('assets/img/icons/log-out.svg')}}" class="me-2"
+                                alt="img">{{_('Logout')}}</a>
+                    </form>
+
                 </div>
             </div>
         </li>
@@ -195,9 +209,14 @@
         <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
             aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
         <div class="dropdown-menu dropdown-menu-right">
-            <a class="dropdown-item" href="profile.html">My Profile</a>
+            <a class="dropdown-item" href="{{route('profile.edit')}}">My Profile</a>
             <a class="dropdown-item" href="generalsettings.html">Settings</a>
-            <a class="dropdown-item" href="signin.html">Logout</a>
+            <!-- Authentication -->
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <a class="dropdown-item" href="{{route('logout')}}"
+                    onclick="event.preventDefault(); this.closest('form').submit();">{{_('Logout')}}</a>
+            </form>
         </div>
     </div>
 

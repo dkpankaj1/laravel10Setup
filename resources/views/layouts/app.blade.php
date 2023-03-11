@@ -10,6 +10,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/img/favicon.png')}}">
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/animate.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/plugins/toastr/toatr.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/dataTables.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/plugins/fontawesome/css/fontawesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/plugins/fontawesome/css/all.min.css')}}">
@@ -70,24 +71,42 @@
     <script src="{{asset('assets/js/feather.min.js')}}"></script>
     <script src="{{asset('assets/js/jquery.slimscroll.min.js')}}"></script>
     <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/toastr/toastr.min.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('assets/js/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/select2/js/select2.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/sweetalert/sweetalert2.all.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/sweetalert/sweetalerts.min.js')}}"></script>
+
 
     @yield('page_script')
 
     <script src="{{asset('assets/js/script.js')}}"></script>
 
+    @if(Session::has('status'))
+    @if(Session::get('status')['success'] === true)
     <script>
         $(document).ready(function(){
-            $("#sidebar-menu a").each(function(){
-                var e = window.location.href.split(/[?#]/)[0];
-                if (String(e).includes($(this).attr('href'))) { 
-                    $(this).addClass('active');
-                    if($(this).parent().parent().parent().hasClass('submenu')){
-                        $(this).parent().parent().siblings().addClass("active subdrop")      
-                    }
-                }
+            toastr.success("Success", "{{Session::get('status')['message']}}", {
+                closeButton: !0,
+                tapToDismiss: !1,
             });
-        });
+       });
     </script>
+    @endif
+
+    @if(Session::get('status')['success'] === false)
+    <script>
+       
+        $(document).ready(function(){
+            toastr.error("Error", "{{Session::get('status')['message']}}", {
+                closeButton: !0,
+                tapToDismiss: !1,
+            });
+       });
+    </script>
+    @endif
+    @endif
 
     {{-- :: End Script Section --}}
 

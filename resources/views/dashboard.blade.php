@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <x-page-header title="Dashboard">
-            <x-breadcrumb />
+            {{ Breadcrumbs::render('dashboard') }}
         </x-page-header>
     </x-slot>
 

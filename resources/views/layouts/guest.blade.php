@@ -46,7 +46,7 @@
                                 </div>
 
                                 @if ($errors->get('email'))
-                                <ul {{ $attributes->merge(['class' => 'text-sm mt-2 text-danger']) }}>
+                                <ul class="text-sm mt-2 text-danger">
                                     @foreach ((array) $errors->get('email') as $message)
                                     <li>{{ $message }}</li>
                                     @endforeach
@@ -65,7 +65,7 @@
                                 </div>
 
                                 @if ($errors->get('password'))
-                                <ul {{ $attributes->merge(['class' => 'text-sm mt-2 text-danger']) }}>
+                                <ul class="text-sm mt-2 text-danger">
                                     @foreach ((array) $errors->get('password') as $message)
                                     <li>{{ $message }}</li>
                                     @endforeach
