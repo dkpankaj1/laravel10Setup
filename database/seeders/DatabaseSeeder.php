@@ -31,6 +31,18 @@ class DatabaseSeeder extends Seeder
         $this->call(CurrencySeeder::class);
         // ------------------------
 
+        // seed order status 
+        $this->call(OrderStatusSeeder::class);
+        // ------------------------
+        
+        // seed payment status  
+        $this->call(PaymentStatusSeeder::class);
+        // ------------------------
+        
+        // seed payment mode 
+        $this->call(PaymentModeSeeder::class);
+        // ------------------------
+
         // seed system settion 
         $this->call(SystemSettionSeeder::class);
         // ------------------------
