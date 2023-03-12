@@ -231,8 +231,9 @@
                             Settings</span> <span class="menu-arrow"></span></a>
                     <ul>
                         <li><a href="{{route('setting.system.manage','system')}}">System Settings</a></li>
-                        <li><a href="{{route('currency.index')}}">Currency Settings</a></li>
                         <li><a href="{{route('roles.index')}}">Group Permissions</a></li>
+                        <li><a href="{{route('currency.index')}}">Currency Settings</a></li>
+                        <li><a href="{{route('units.index')}}">Unit Settings</a></li>
                     </ul>
                 </li>
             </ul>

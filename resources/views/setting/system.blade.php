@@ -21,7 +21,7 @@
                             <input type="text" placeholder="Company Name" name="company_name"
                                 value="{{old('company_name',$systemSetting->company_name)}}" />
                             @error('company_name')
-                            <div class="invalid-feedback d-block">{{$messege}}</div>
+                            <div class="invalid-feedback d-block">{{$message}}</div>
                             @enderror
                         </div>
                     </div>
@@ -33,7 +33,7 @@
                             <input type="text" placeholder="Company Email" name="company_email"
                                 value="{{old('company_email',$systemSetting->company_email)}}" />
                             @error('company_email')
-                            <div class="invalid-feedback d-block">{{$messege}}</div>
+                            <div class="invalid-feedback d-block">{{$message}}</div>
                             @enderror
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                             <input type="text" placeholder="Company Phone" name="company_phone"
                                 value="{{old('company_phone',$systemSetting->company_phone)}}" />
                             @error('company_phone')
-                            <div class="invalid-feedback d-block">{{$messege}}</div>
+                            <div class="invalid-feedback d-block">{{$message}}</div>
                             @enderror
                         </div>
                     </div>
@@ -55,13 +55,13 @@
                         <div class="form-group">
                             <label>Default Time Zone <span class="manitory">*</span></label>
                             <select class="select" name="time_zone">
-                                <option>Choose Time Zone</option>
+                                <option value="">Choose Time Zone</option>
                                 @foreach($defaultTimeZone as $item)
-                                <option value="{{$item}}" @if(old('time_zone',$systemSetting->time_zone == $item)) selected="selected" @endif>{{$item}}</option>
+                                <option value="{{$item}}" @if(old('time_zone',$systemSetting->time_zone) == $item) selected="selected" @endif>{{$item}}</option>
                                 @endforeach
                             </select>
                             @error('time_zone')
-                            <div class="invalid-feedback d-block">{{$messege}}</div>
+                            <div class="invalid-feedback d-block">{{$message}}</div>
                             @enderror
                         </div>
                     </div>
@@ -71,13 +71,13 @@
                         <div class="form-group">
                             <label>Default Currency <span class="manitory">*</span></label>
                             <select class="select" name="default_currency">
-                                <option>Choose Currency</option>
+                                <option value="">Choose Currency</option>
                                 @foreach($currencys as $item) 
-                                <option value="{{$item->id}}" @if(old('default_currency',$systemSetting->default_currency == $item->id)) selected="selected" @endif>{{$item->name}} [ {{$item->symbol}} ]</option>
+                                <option value="{{$item->id}}" @if(old('default_currency',$systemSetting->default_currency) == $item->id) selected="selected" @endif>{{$item->name}} [ {{$item->symbol}} ]</option>
                                     @endforeach
                             </select>
                             @error('default_currency')
-                            <div class="invalid-feedback d-block">{{$messege}}</div>
+                            <div class="invalid-feedback d-block">{{$message}}</div>
                             @enderror
                         </div>
                     </div>
@@ -87,13 +87,13 @@
                         <div class="form-group">
                             <label>Default Date Format<span class="manitory">*</span></label>
                             <select class="select" name="date_format">
-                                <option>Choose Date Format</option>
+                                <option value="">Choose Date Format</option>
                                 @foreach($defaultDateFormat as $item)
-                                <option value="{{$item}}" @if(old('date_format',$systemSetting->date_format == $item)) selected="selected" @endif>{{$item}}</option>
+                                <option value="{{$item}}" @if(old('date_format',$systemSetting->date_format) == $item) selected="selected" @endif >{{$item}}</option>
                                 @endforeach
                             </select>
                             @error('date_format')
-                            <div class="invalid-feedback d-block">{{$messege}}</div>
+                            <div class="invalid-feedback d-block">{{$message}}</div>
                             @enderror
                         </div>
                     </div>
@@ -103,13 +103,13 @@
                         <div class="form-group">
                             <label>Default Session<span class="manitory">*</span></label>
                             <select class="select" name="default_app_session">
-                                <option>Choose Session</option>
+                                <option value="">Choose Session</option>
                                 @foreach($appSessions as $item)
-                                <option value="{{$item->id}}" @if(old('default_app_session',$systemSetting->default_app_session == $item->id)) selected="selected" @endif>{{$item->name}}</option>
+                                <option value="{{$item->id}}" @if(old('default_app_session',$systemSetting->default_app_session) == $item->id) selected="selected" @endif>{{$item->name}}</option>
                                 @endforeach
                             </select>
                             @error('default_app_session')
-                            <div class="invalid-feedback d-block">{{$messege}}</div>
+                            <div class="invalid-feedback d-block">{{$message}}</div>
                             @enderror
                         </div>
                     </div>
@@ -122,7 +122,7 @@
                             <textarea placeholder="Enter Address"
                                 name="company_address">{{old('company_address',$systemSetting->company_address)}}</textarea>
                             @error('company_address')
-                            <div class="invalid-feedback d-block">{{$messege}}</div>
+                            <div class="invalid-feedback d-block">{{$message}}</div>
                             @enderror
                         </div>
                     </div>
@@ -142,7 +142,7 @@
                                 </div>
                             </div>
                             @error('company_name')
-                            <div class="invalid-feedback d-block">{{$messege}}</div>
+                            <div class="invalid-feedback d-block">{{$message}}</div>
                             @enderror
                         </div>
                     </div>

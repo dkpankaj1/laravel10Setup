@@ -101,7 +101,7 @@
             <hr>
 
             @foreach($appSessionList as $items)
-            <a href="{{route('app.session.set',$items)}}" class="dropdown-item @if(Session::has('appSession')) @if(Session::get('appSession') ==$items->name ) active @endif @endif">
+            <a href="{{route('app.session.set',$items)}}" class="dropdown-item @if(Session::has('appSession')) @if(Session::get('appSession')['name'] == $items->name ) active @endif @endif">
                 {{$items->name}}
             </a>
             @endforeach

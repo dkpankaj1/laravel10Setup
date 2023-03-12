@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\ProductUnit;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
@@ -34,13 +36,17 @@ class DatabaseSeeder extends Seeder
         // seed order status 
         $this->call(OrderStatusSeeder::class);
         // ------------------------
-        
+
         // seed payment status  
         $this->call(PaymentStatusSeeder::class);
         // ------------------------
-        
+
         // seed payment mode 
         $this->call(PaymentModeSeeder::class);
+        // ------------------------
+
+        // seed payment mode 
+        $this->call(ProductUnitSeeder::class);
         // ------------------------
 
         // seed system settion 
