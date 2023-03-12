@@ -16,12 +16,7 @@
                 <div class="profile-top">
                     <div class="profile-content">
                         <div class="profile-contentimg">
-                            <img src="assets/img/customer/customer5.jpg" alt="img" id="blah" />
-                            <div class="profileupload">
-                                <input type="file" id="imgInp" />
-                                <a href="javascript:void(0);"><img src="{{asset('assets/img/icons/edit-set.svg')}}"
-                                        alt="img" /></a>
-                            </div>
+                            <img src="{{asset('assets/img/avatar.svg')}}" alt="img" id="blah" />
                         </div>
                         <div class="profile-contentname">
                             <h2>{{$user->name}}</h2>

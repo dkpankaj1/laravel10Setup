@@ -3,7 +3,8 @@
         <div id="sidebar-menu" class="sidebar-menu">
             <ul>
                 <li>
-                    <a href="{{route("dashboard")}}" ><img src="{{asset('assets/img/icons/dashboard.svg')}}" alt="img"><span>
+                    <a href="{{route('dashboard')}}"><img src="{{asset('assets/img/icons/dashboard.svg')}}"
+                            alt="img"><span>
                             Dashboard</span> </a>
                 </li>
                 <li class="submenu">
@@ -34,7 +35,8 @@
                     </ul>
                 </li>
                 <li class="submenu">
-                    <a href="javascript:void(0);"><img src="{{asset('assets/img/icons/purchase1.svg')}}" alt="img"><span>
+                    <a href="javascript:void(0);"><img src="{{asset('assets/img/icons/purchase1.svg')}}"
+                            alt="img"><span>
                             Purchase</span> <span class="menu-arrow"></span></a>
                     <ul>
                         <li><a href="purchaselist.html">Purchase List</a></li>
@@ -52,7 +54,8 @@
                     </ul>
                 </li>
                 <li class="submenu">
-                    <a href="javascript:void(0);"><img src="{{asset('assets/img/icons/quotation1.svg')}}" alt="img"><span>
+                    <a href="javascript:void(0);"><img src="{{asset('assets/img/icons/quotation1.svg')}}"
+                            alt="img"><span>
                             Quotation</span> <span class="menu-arrow"></span></a>
                     <ul>
                         <li><a href="quotationList.html">Quotation List</a></li>
@@ -60,7 +63,8 @@
                     </ul>
                 </li>
                 <li class="submenu">
-                    <a href="javascript:void(0);"><img src="{{asset('assets/img/icons/transfer1.svg')}}" alt="img"><span>
+                    <a href="javascript:void(0);"><img src="{{asset('assets/img/icons/transfer1.svg')}}"
+                            alt="img"><span>
                             Transfer</span> <span class="menu-arrow"></span></a>
                     <ul>
                         <li><a href="transferlist.html">Transfer List</a></li>
@@ -97,18 +101,18 @@
                     <a href="javascript:void(0);"><img src="{{asset('assets/img/icons/places.svg')}}" alt="img"><span>
                             Places</span> <span class="menu-arrow"></span></a>
                     <ul>
-                        <li ><a href="newcountry.html">New Country</a></li>
+                        <li><a href="newcountry.html">New Country</a></li>
                         <li><a href="countrieslist.html">Countries list</a></li>
                         <li><a href="newstate.html">New State </a></li>
                         <li><a href="statelist.html">State list</a></li>
                     </ul>
                 </li>
-                
+
 
                 <li>
                     <a href="components.html"><i data-feather="layers"></i><span> Components</span> </a>
                 </li>
-                <li >
+                <li>
                     <a href="blankpage.html"><i data-feather="file"></i><span> Blank Page</span> </a>
                 </li>
                 <li class="submenu">
@@ -230,7 +234,7 @@
                         <li><a href="emailsettings.html">Email Settings</a></li>
                         <li><a href="paymentsettings.html">Payment Settings</a></li>
                         <li><a href="currencysettings.html">Currency Settings</a></li>
-                        <li><a href="grouppermissions.html">Group Permissions</a></li>
+                        <li><a href="{{route('roles.index')}}">Group Permissions</a></li>
                         <li><a href="taxrates.html">Tax Rates</a></li>
                     </ul>
                 </li>

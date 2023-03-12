@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\ApplicationSession;
 use Config;
 use DB;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Redirect;
 
 class BaseController extends Controller
 {
@@ -81,47 +84,36 @@ class BaseController extends Controller
         }
     }
 
-    // Set config mail
-    // public function Set_config_mail()
-    // {
-
-    //     $server = DB::table('servers')->where('deleted_at', '=', null)->first();
-    //     $settings = DB::table('settings')->where('deleted_at', '=', null)->first();
-    //     if ($server && $settings) //checking if table is not empty
-    //     {
-    //         $config = array(
-    //             'driver' => 'smtp',
-    //             'host' => $server->host,
-    //             'port' => $server->port,
-    //             'from' => array('address' => $settings->email, 'name' => 'Admin'),
-    //             'encryption' => $server->encryption,
-    //             'username' => $server->username,
-    //             'password' => $server->password,
-    //             'sendmail' => '/usr/sbin/sendmail -bs',
-    //             'pretend' => false,
-    //         );
-    //         Config::set('mail', $config);
-    //     }
-    // }
-
+    // Send Status Success
     public function sendWithSuccess($msg)
     {
-        $response = [
-            'success' => true,
-            'message' => $msg,
-        ];
-       
+        $response = ['success' => true, 'message' => $msg];
         return ['status' => $response];
     }
 
+    // Send Status Error
     public function sendWithError($msg)
     {
-        $response = [
-            'success' => false,
-            'message' => $msg,
-        ];
-       
-
+        $response = ['success' => false, 'message' => $msg];
         return ['status' => $response];
     }
+
+    // Get Current ApplicationSession
+    public function setAppSession(ApplicationSession $appSession): RedirectResponse
+    {
+        session()->forget('appSession');
+        session()->put("appSession", ["id" => $appSession->id, "name" => $appSession->name]);
+        return Redirect::back()->with($this->sendWithSuccess('Session Switch Success.'));
+    }
+
+    // Get Current ApplicationSession
+    public function getAppSession(): array
+    {
+        $currentSession = null;
+        if (session()->has('appSession')) {
+            $currentSession = session()->get('appSession');
+        }
+        return  $currentSession;
+    }
+
 }

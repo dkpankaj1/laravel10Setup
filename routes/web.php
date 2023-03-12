@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Auth\PasswordController;
+use App\Http\Controllers\BaseController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RolesAndPermissionsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,14 +29,27 @@ Route::group(['middleware' => ['auth']], function () {
     })->name('dashboard');
 
 
+    // :: set appSession
+    Route::get('/session/{appSession}', [BaseController::class, 'setAppSession'])->name('app.session.set');
 
-    // 
-    Route::group(["prefix" => "profile"],function(){
+    // :: Role And Permission
+    Route::group(["prefix" => "roles"], function () {
+        Route::get('/', [RolesAndPermissionsController::class, 'listRole'])->name('roles.index');
+        Route::get('/create',[RolesAndPermissionsController::class, 'createRole'])->name('roles.create');
+        Route::post('/create',[RolesAndPermissionsController::class, 'storeRole'])->name('roles.create');
+        Route::get('/edit/{role:name}',[RolesAndPermissionsController::class, 'editRole'])->name('roles.edit');
+        Route::put('/edit/{role:name}',[RolesAndPermissionsController::class, 'updateRole'])->name('roles.edit');
+        Route::get('/delete/{role}',[RolesAndPermissionsController::class, 'deleteRole'])->name('roles.delete');
+        Route::delete('/delete/{role}',[RolesAndPermissionsController::class, 'destroyRole'])->name('roles.delete');
+    });
+
+
+    // :: User Profile
+    Route::group(["prefix" => "profile"], function () {
         Route::get('/', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/', [ProfileController::class, 'update'])->name('profile.edit');
         Route::put('/', [PasswordController::class, 'update'])->name('profile.edit');
     });
-
 });
 
 

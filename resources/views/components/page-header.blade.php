@@ -7,6 +7,7 @@
             {{-- :: Begin Breadcrumb :: --}}
 
             {{$slot}}
+            
 
             {{-- :: End Breadcrumb :: --}}
 
