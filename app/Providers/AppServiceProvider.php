@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\ApplicationSession;
+use App\Models\SystemSetting;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -13,7 +14,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
     }
 
     /**
@@ -21,6 +21,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        View::share("appSessionList",ApplicationSession::all());
+        $system_setting = SystemSetting::first();
+
+        if (!session()->has('appSession')) {
+            $appSession = ApplicationSession::find($system_setting->default_app_session);
+            session()->put("appSession", ["id" => $appSession->id, "name" => $appSession->name]);
+        }
+        
+        View::share("appSessionList", ApplicationSession::all());
     }
 }

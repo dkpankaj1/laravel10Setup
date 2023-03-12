@@ -65,7 +65,7 @@
                         <i class="me-2" data-feather="user"></i>
                         {{_('My Profile')}}
                     </a>
-                    <a class="dropdown-item" href="generalsettings.html"><i class="me-2"
+                    <a class="dropdown-item" href="{{route('setting.system.manage','system')}}"><i class="me-2"
                             data-feather="settings"></i>Settings</a>
                     <hr class="m-0">
 
@@ -90,7 +90,7 @@
             aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
         <div class="dropdown-menu dropdown-menu-right">
             <a class="dropdown-item" href="{{route('profile.edit')}}">My Profile</a>
-            <a class="dropdown-item" href="generalsettings.html">Settings</a>
+            <a class="dropdown-item" href="{{route('setting.system.manage','system')}}">Settings</a>
             <!-- Authentication -->
             <form method="POST" action="{{ route('logout') }}">
                 @csrf

@@ -5,6 +5,7 @@ use App\Http\Controllers\BaseController;
 use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RolesAndPermissionsController;
+use App\Http\Controllers\SystemSettingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,9 +26,12 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['auth']], function () {
 
-    Route::resource('currency',CurrencyController::class)->only(['index','show','create','store','edit','update']);
-    Route::get('currency/delete/{currency}',[CurrencyController::class,'delete'])->name('currency.delete');
-    Route::delete('currency/delete/{currency}',[CurrencyController::class,'destroy'])->name('currency.delete');
+    //  :: begin currency route
+    Route::resource('currency', CurrencyController::class)->only(['index', 'show', 'create', 'store', 'edit', 'update']);
+    Route::get('currency/delete/{currency}', [CurrencyController::class, 'delete'])->name('currency.delete');
+    Route::delete('currency/delete/{currency}', [CurrencyController::class, 'destroy'])->name('currency.delete');
+    //  :: end currency route
+
 
     // :: Dashboard Route 
     Route::get('/dashboard', function () {
@@ -41,12 +45,12 @@ Route::group(['middleware' => ['auth']], function () {
     // :: Role And Permission
     Route::group(["prefix" => "roles"], function () {
         Route::get('/', [RolesAndPermissionsController::class, 'listRole'])->name('roles.index');
-        Route::get('/create',[RolesAndPermissionsController::class, 'createRole'])->name('roles.create');
-        Route::post('/create',[RolesAndPermissionsController::class, 'storeRole'])->name('roles.create');
-        Route::get('/edit/{role:name}',[RolesAndPermissionsController::class, 'editRole'])->name('roles.edit');
-        Route::put('/edit/{role:name}',[RolesAndPermissionsController::class, 'updateRole'])->name('roles.edit');
-        Route::get('/delete/{role}',[RolesAndPermissionsController::class, 'deleteRole'])->name('roles.delete');
-        Route::delete('/delete/{role}',[RolesAndPermissionsController::class, 'destroyRole'])->name('roles.delete');
+        Route::get('/create', [RolesAndPermissionsController::class, 'createRole'])->name('roles.create');
+        Route::post('/create', [RolesAndPermissionsController::class, 'storeRole'])->name('roles.create');
+        Route::get('/{role:name}/edit', [RolesAndPermissionsController::class, 'editRole'])->name('roles.edit');
+        Route::put('/{role:name}/edit', [RolesAndPermissionsController::class, 'updateRole'])->name('roles.edit');
+        Route::get('/{role}/delete', [RolesAndPermissionsController::class, 'deleteRole'])->name('roles.delete');
+        Route::delete('/{role}/delete', [RolesAndPermissionsController::class, 'destroyRole'])->name('roles.delete');
     });
 
 
@@ -56,6 +60,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::patch('/', [ProfileController::class, 'update'])->name('profile.edit');
         Route::put('/', [PasswordController::class, 'update'])->name('profile.edit');
     });
+
+    // :: system settion 
+    Route::get('setting/{systemSetting:name}/manage', [SystemSettingController::class, 'show'])->name('setting.system.manage');
+    Route::put('setting/{systemSetting:name}/manage', [SystemSettingController::class, 'update'])->name('setting.system.manage');
 });
 
 

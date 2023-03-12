@@ -27,8 +27,12 @@ class DatabaseSeeder extends Seeder
         $this->call(ApplicationSessionSeeder::class);
         // ------------------------
 
-         // seed currency 
-         $this->call(CurrencySeeder::class);
-         // ------------------------
+        // seed currency 
+        $this->call(CurrencySeeder::class);
+        // ------------------------
+
+        // seed system settion 
+        $this->call(SystemSettionSeeder::class);
+        // ------------------------
     }
 }

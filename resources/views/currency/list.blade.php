@@ -58,7 +58,7 @@
                     <tbody>
                         @foreach($curencys as $curency)
                         <tr>
-                            <th>CUR#{{$curency->id}}</th>
+                            <td>CUR#{{$curency->id}}</td>
                             <td>{{$curency->name}}</td>
                             <td>{{$curency->code}}</td>
                             <td>{{$curency->symbol}}</td>

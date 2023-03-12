@@ -41,20 +41,13 @@ Breadcrumbs::for('roles_edit', function ($trail,$role) {
     $trail->push('Edit', route('roles.edit',$role));
 });
 
-
-
 // User Profile
 Breadcrumbs::for('profile', function ($trail) {
     $trail->push('Profile Manager', route('profile.edit'));
 });
 
-// // Home > About
-// Breadcrumbs::for('about', function ($trail) {
-//     $trail->parent('home');
-//     $trail->push('About', route('about'));
-// });
 
-// Breadcrumbs::for('post', function ($trail, $post) {
-//     $trail->parent('blog');
-//     $trail->push($post->title, route('post', $post));
-// });
+// System Setting
+Breadcrumbs::for('system.settion.manage', function ($trail,$systemSetting) {
+    $trail->push('Manage System Setting', route('setting.system.manage',$systemSetting));
+});
