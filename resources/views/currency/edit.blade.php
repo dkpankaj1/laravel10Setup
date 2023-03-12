@@ -12,7 +12,7 @@
         <div class="col-lg-8">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{route('currency.edit',$currency)}}" method="POST">
+                    <form action="{{route('currency.update',$currency)}}" method="POST">
                         @csrf
                         @method('put')
 
@@ -60,7 +60,7 @@
                             <label class="col-lg-3 col-form-label">Note</label>
                             <div class="col-lg-9">
                                 <textarea class="form-control " placeholder="A Few Words.."
-                                    name="description">{{old('description')}}</textarea>
+                                    name="description">{{old('description',$currency->description)}}</textarea>
                                 @error('description')
                                 <div class="invalid-feedback d-block">{{$message}}</div>
                                 @enderror
@@ -68,9 +68,14 @@
                         </div>
                         {{-- :: End name Input --}}
 
-                        <div class="text-end">
-                            <button type="submit" class="btn btn-primary">Save</button>
+                        <hr>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <button type="submit" class="btn btn-primary btn-submit">Update</button>
+                            </div>
                         </div>
+
                     </form>
                 </div>
             </div>

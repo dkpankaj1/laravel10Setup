@@ -16,7 +16,7 @@ Breadcrumbs::for('currency.create', function ($trail) {
 Breadcrumbs::for('currency.edit', function ($trail,$currency) {
     $trail->parent('currency');
     $trail->push($currency->name);
-    $trail->push('Edit', route('currency.edit'.$currency));
+    $trail->push('Edit', route('currency.edit',$currency));
 });
 
 

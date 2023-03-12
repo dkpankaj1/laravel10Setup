@@ -67,9 +67,13 @@
                         </div>
                         {{-- :: End name Input --}}
 
-                        <div class="text-end">
-                            <button type="submit" class="btn btn-primary">Save</button>
+                        <hr>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <button type="submit" class="btn btn-primary btn-submit">Save</button>
+                            </div>
                         </div>
+
                     </form>
                 </div>
             </div>

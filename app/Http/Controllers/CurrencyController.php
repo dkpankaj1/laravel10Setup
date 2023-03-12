@@ -34,8 +34,8 @@ class CurrencyController extends BaseController
     {
 
         $validated = $request->validate([
-            'name'          => 'required',
-            'code'          => 'required',
+            'name'          => ["required", "unique:currencies,name"],
+            'code'          => ["required", "unique:currencies,code"],
             'symbol'        => 'required',
             'description'   => 'nullable',
         ]);
@@ -76,7 +76,26 @@ class CurrencyController extends BaseController
      */
     public function update(Request $request, Currency $currency)
     {
-        //
+        $validated = $request->validate([
+            'name'          => ["required", "unique:currencies,name,".$currency->id],
+            'code'          => ["required", "unique:currencies,code,".$currency->id],
+            'symbol'        => 'required',
+            'description'   => 'nullable',
+        ]);
+
+        $newCurrencyData = [
+            'name' => $validated['name']?? $currency->name,
+            'code' => $validated['code'] ?? $currency->code,
+            'symbol' => $validated['symbol'] ?? $currency->symbol,
+            'description' => $request->description ?? $currency->description,
+        ];
+
+        try {
+            $currency->update($newCurrencyData);
+            return Redirect::route('currency.index')->with($this->sendWithSuccess('Currency Update Success'));
+        } catch (\Exception $e) {
+            return Redirect::back()->with($this->sendWithError($e->getMessage()));
+        }
     }
 
     /**
