@@ -1,5 +1,25 @@
 <?php
 
+
+// Currency
+Breadcrumbs::for('currency', function ($trail) {
+    $trail->push('Manage Currency Setting', route('currency.index'));
+});
+
+// Currency > create
+Breadcrumbs::for('currency.create', function ($trail) {
+    $trail->parent('currency');
+    $trail->push('Create', route('currency.create'));
+});
+
+// Currency > edit
+Breadcrumbs::for('currency.edit', function ($trail,$currency) {
+    $trail->parent('currency');
+    $trail->push($currency->name);
+    $trail->push('Edit', route('currency.edit'.$currency));
+});
+
+
 // Dashboard
 Breadcrumbs::for('dashboard', function ($trail) {
     $trail->push('Dashboard', route('dashboard'));
@@ -25,7 +45,7 @@ Breadcrumbs::for('roles_edit', function ($trail,$role) {
 
 // User Profile
 Breadcrumbs::for('profile', function ($trail) {
-    $trail->push('Profile', route('profile.edit'));
+    $trail->push('Profile Manager', route('profile.edit'));
 });
 
 // // Home > About

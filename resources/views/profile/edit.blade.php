@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <x-page-header title="Profile">
+        <x-page-header title="User Profile">
             {{ Breadcrumbs::render('profile') }}
         </x-page-header>
     </x-slot>

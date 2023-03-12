@@ -26,5 +26,9 @@ class DatabaseSeeder extends Seeder
         // seed application session
         $this->call(ApplicationSessionSeeder::class);
         // ------------------------
+
+         // seed currency 
+         $this->call(CurrencySeeder::class);
+         // ------------------------
     }
 }

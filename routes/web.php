@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\BaseController;
+use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RolesAndPermissionsController;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,11 @@ Route::get('/', function () {
 
 
 Route::group(['middleware' => ['auth']], function () {
+
+    Route::resource('currency',CurrencyController::class)->only(['index','show','create','store','edit','update']);
+    Route::get('currency/delete/{currency}',[CurrencyController::class,'delete'])->name('currency.delete');
+    Route::delete('currency/delete/{currency}',[CurrencyController::class,'destroy'])->name('currency.delete');
+
     // :: Dashboard Route 
     Route::get('/dashboard', function () {
         return view('dashboard');

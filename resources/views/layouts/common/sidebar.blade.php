@@ -231,11 +231,8 @@
                             Settings</span> <span class="menu-arrow"></span></a>
                     <ul>
                         <li><a href="generalsettings.html">General Settings</a></li>
-                        <li><a href="emailsettings.html">Email Settings</a></li>
-                        <li><a href="paymentsettings.html">Payment Settings</a></li>
-                        <li><a href="currencysettings.html">Currency Settings</a></li>
+                        <li><a href="{{route('currency.index')}}">Currency Settings</a></li>
                         <li><a href="{{route('roles.index')}}">Group Permissions</a></li>
-                        <li><a href="taxrates.html">Tax Rates</a></li>
                     </ul>
                 </li>
             </ul>

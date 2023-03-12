@@ -33,7 +33,6 @@ class RolesAndPermissionsController extends BaseController
         ]);
 
         try {
-
             $role = Role::create($validated);
             $role->syncPermissions((array) $validated['permission']);
             return Redirect::route('roles.index')->with($this->sendWithSuccess('Role Create Success'));
