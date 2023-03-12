@@ -72,7 +72,7 @@
                                             </li>
                                             <li>
                                                 <label class="inputcheck">Edit
-                                                    <input type="checkbox" name="permission[]" value="usrolesers.edit" />
+                                                    <input type="checkbox" name="permission[]" value="roles.edit" />
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </li>
