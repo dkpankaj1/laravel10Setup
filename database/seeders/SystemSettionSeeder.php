@@ -19,10 +19,11 @@ class SystemSettionSeeder extends Seeder
             'company_email'         => "test@email.com",
             'company_phone'         => "+91 9794445940",
             'company_address'       => "Test Company Name",
-            'time_zone'             => "" ,
-            'date_format'           => "",
-            'default_app_session'   => 1,
-            'default_currency'      => 1
+            'time_zone'             => null,
+            'date_format'           => null,
+            'default_warehouse'     => null,
+            'default_app_session'   => null,
+            'default_currency'      => null
         ];
 
         SystemSetting::create($systemSetting);

@@ -15,7 +15,7 @@
                 @method('put')
                 <div class="row">
                     {{-- :: Company Name Input :: --}}
-                    <div class="col-lg-6 col-sm-12">
+                    <div class="col-lg-3 col-sm-6 col-12">
                         <div class="form-group">
                             <label>Company Name <span class="manitory">*</span></label>
                             <input type="text" placeholder="Company Name" name="company_name"
@@ -65,6 +65,23 @@
                             @enderror
                         </div>
                     </div>
+
+                     {{-- :: default warehouse Input :: --}}
+                     <div class="col-lg-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Default Warehouses <span class="manitory">*</span></label>
+                            <select class="select" name="default_warehouse">
+                                <option value="">Choose warehouses</option>
+                                @foreach($warehouses as $item) 
+                                <option value="{{$item->id}}" @if(old('default_warehouse',$systemSetting->default_warehouse) == $item->id) selected="selected" @endif >{{$item->name}}</option>
+                                    @endforeach
+                            </select>
+                            @error('default_currency')
+                            <div class="invalid-feedback d-block">{{$message}}</div>
+                            @enderror
+                        </div>
+                    </div>
+
 
                     {{-- :: default currency Input :: --}}
                     <div class="col-lg-3 col-sm-6 col-12">
@@ -158,10 +175,5 @@
     </div>
 
     {{-- :: End Section :: --}}
-
-    @section('page_script')
-    <script src="{{asset('assets/js/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('assets/js/dataTables.bootstrap4.min.js')}}"></script>
-    @endsection
 
 </x-app-layout>

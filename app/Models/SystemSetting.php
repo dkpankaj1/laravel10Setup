@@ -8,6 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class SystemSetting extends Model
 {
     use HasFactory;
-    protected $fillable = ['name','company_name','company_email','company_phone','company_address','time_zone','date_format','default_app_session','default_currency'];
-
+    
+    protected $fillable = [
+        'name',
+        'company_name',
+        'company_email',
+        'company_phone',
+        'company_address',
+        'time_zone',
+        'date_format',
+        'default_warehouse',
+        'default_app_session',
+        'default_currency'
+    ];
 }

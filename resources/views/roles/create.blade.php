@@ -147,9 +147,4 @@
     </div>
 
     {{-- :: End Section :: --}}
-
-    @section('page_script')
-    <script src="{{asset('assets/js/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('assets/js/dataTables.bootstrap4.min.js')}}"></script>
-    @endsection
 </x-app-layout>
