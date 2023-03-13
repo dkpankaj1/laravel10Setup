@@ -2,11 +2,14 @@
 
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\BaseController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CurrencyController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductUnitController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RolesAndPermissionsController;
 use App\Http\Controllers\SystemSettingController;
+use App\Http\Controllers\WarehouseController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,32 +30,35 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['auth']], function () {
 
-    //  :: begin currency route
+    //  :: Begin warehouse 
+    Route::resource('category', CategoryController::class)->only(['index', 'create', 'store', 'edit', 'update']);
+    Route::get('category/{category}/delete', [CategoryController::class, 'delete'])->name('category.delete');
+    Route::delete('category/{category}/delete', [CategoryController::class, 'destroy'])->name('category.destroy');
+    //  :: End warehouse 
+
+    //  :: Begin currency 
     Route::resource('currency', CurrencyController::class)->only(['index', 'create', 'store', 'edit', 'update']);
     Route::get('currency/{currency}/delete', [CurrencyController::class, 'delete'])->name('currency.delete');
-    Route::delete('currency/{currency}/delete', [CurrencyController::class, 'destroy'])->name('currency.delete');
-    //  :: end currency route
+    Route::delete('currency/{currency}/delete', [CurrencyController::class, 'destroy'])->name('currency.destroy');
+    //  :: End currency 
 
+    // :: Begin Dashboard Route 
+    Route::get('/dashboard',[HomeController::class,'dashboard'] )->name('dashboard');
+    // :: End Dashboard Route 
 
-    // :: Dashboard Route 
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-
-
-    // :: set appSession
+    // :: Begin set-appSession 
     Route::get('/session/{appSession}', [BaseController::class, 'setAppSession'])->name('app.session.set');
+    // :: End set-appSession 
 
-    //  :: begin product unit route
+    //  :: Begin product unit 
     Route::resource('units', ProductUnitController::class)->only(['index', 'create', 'store']);
     Route::get('units/{productUnit}/edit', [ProductUnitController::class, 'edit'])->name('units.edit');
     Route::put('units/{productUnit}/edit', [ProductUnitController::class, 'update'])->name('units.update');
     Route::get('units/{productUnit}/delete', [ProductUnitController::class, 'delete'])->name('units.delete');
-    Route::delete('units/{productUnit}/delete', [ProductUnitController::class, 'destroy'])->name('units.delete');
-    //  :: end currency route
+    Route::delete('units/{productUnit}/delete', [ProductUnitController::class, 'destroy'])->name('units.destroy');
+    //  :: End  product unit 
 
-
-    // :: Role And Permission
+    // :: Begin Role And Permission
     Route::group(["prefix" => "roles"], function () {
         Route::get('/', [RolesAndPermissionsController::class, 'listRole'])->name('roles.index');
         Route::get('/create', [RolesAndPermissionsController::class, 'createRole'])->name('roles.create');
@@ -60,20 +66,29 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/{role:name}/edit', [RolesAndPermissionsController::class, 'editRole'])->name('roles.edit');
         Route::put('/{role:name}/edit', [RolesAndPermissionsController::class, 'updateRole'])->name('roles.edit');
         Route::get('/{role}/delete', [RolesAndPermissionsController::class, 'deleteRole'])->name('roles.delete');
-        Route::delete('/{role}/delete', [RolesAndPermissionsController::class, 'destroyRole'])->name('roles.delete');
+        Route::delete('/{role}/delete', [RolesAndPermissionsController::class, 'destroyRole'])->name('roles.destroy');
     });
+    // :: End Role And Permission
 
-
-    // :: User Profile
+    // :: Begin User Profile
     Route::group(["prefix" => "profile"], function () {
         Route::get('/', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/', [ProfileController::class, 'update'])->name('profile.edit');
         Route::put('/', [PasswordController::class, 'update'])->name('profile.edit');
     });
+    // :: End User Profile
 
-    // :: system settion 
+    // :: Begin system settion 
     Route::get('setting/{systemSetting:name}/manage', [SystemSettingController::class, 'show'])->name('setting.system.manage');
     Route::put('setting/{systemSetting:name}/manage', [SystemSettingController::class, 'update'])->name('setting.system.manage');
+    // :: End system settion 
+
+    //  :: Begin warehouse 
+    Route::resource('warehouse', WarehouseController::class)->only(['index', 'create', 'store', 'edit', 'update']);
+    Route::get('warehouse/{warehouse}/delete', [WarehouseController::class, 'delete'])->name('warehouse.delete');
+    Route::delete('warehouse/{warehouse}/delete', [WarehouseController::class, 'destroy'])->name('warehouse.destroy');
+    //  :: End warehouse 
+
 });
 
 

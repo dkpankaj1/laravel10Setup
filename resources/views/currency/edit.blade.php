@@ -9,7 +9,7 @@
     {{-- :: Begin Section :: --}}
 
     <div class="row">
-        <div class="col-lg-8">
+        <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
                     <form action="{{route('currency.update',$currency)}}" method="POST">
@@ -57,7 +57,7 @@
 
                         {{-- :: Begin name Input --}}
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label">Note</label>
+                            <label class="col-lg-3 col-form-label">Notes</label>
                             <div class="col-lg-9">
                                 <textarea class="form-control " placeholder="A Few Words.."
                                     name="description">{{old('description',$currency->description)}}</textarea>

@@ -230,10 +230,12 @@
                     <a href="javascript:void(0);"><img src="{{asset('assets/img/icons/settings.svg')}}" alt="img"><span>
                             Settings</span> <span class="menu-arrow"></span></a>
                     <ul>
-                        <li><a href="{{route('setting.system.manage','system')}}">System Settings</a></li>
-                        <li><a href="{{route('roles.index')}}">Group Permissions</a></li>
-                        <li><a href="{{route('currency.index')}}">Currency Settings</a></li>
+                        <li><a href="{{route('warehouse.index')}}">Warehouse</a></li>
+                        <li><a href="{{route('category.index')}}">Category</a></li>
+                        <li><a href="{{route('currency.index')}}">Currency</a></li>
                         <li><a href="{{route('units.index')}}">Unit Settings</a></li>
+                        <li><a href="{{route('roles.index')}}">Group Permissions</a></li>
+                        <li><a href="{{route('setting.system.manage','system')}}">System Settings</a></li>
                     </ul>
                 </li>
             </ul>

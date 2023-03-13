@@ -66,7 +66,7 @@ class CurrencyController extends BaseController
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Currency $currency)
+    public function edit(Currency $currency): View
     {
         return view('currency.edit', compact('currency'));
     }
@@ -74,17 +74,17 @@ class CurrencyController extends BaseController
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Currency $currency)
+    public function update(Request $request, Currency $currency): RedirectResponse
     {
         $validated = $request->validate([
-            'name'          => ["required", "unique:currencies,name,".$currency->id],
-            'code'          => ["required", "unique:currencies,code,".$currency->id],
+            'name'          => ["required", "unique:currencies,name," . $currency->id],
+            'code'          => ["required", "unique:currencies,code," . $currency->id],
             'symbol'        => 'required',
             'description'   => 'nullable',
         ]);
 
         $newCurrencyData = [
-            'name' => $validated['name']?? $currency->name,
+            'name' => $validated['name'] ?? $currency->name,
             'code' => $validated['code'] ?? $currency->code,
             'symbol' => $validated['symbol'] ?? $currency->symbol,
             'description' => $request->description ?? $currency->description,
@@ -109,7 +109,7 @@ class CurrencyController extends BaseController
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Currency $currency)
+    public function destroy(Currency $currency): RedirectResponse
     {
         try {
             $currency->delete();

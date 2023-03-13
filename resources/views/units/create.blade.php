@@ -82,7 +82,7 @@
 
                         {{-- :: Begin name Input --}}
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label">Note</label>
+                            <label class="col-lg-3 col-form-label">Notes</label>
                             <div class="col-lg-9">
                                 <textarea class="form-control " placeholder="A Few Words.."
                                     name="description">{{old('description')}}</textarea>

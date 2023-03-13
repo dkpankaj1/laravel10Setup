@@ -24,7 +24,7 @@ class ProductUnitController extends BaseController
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
         $units = ProductUnit::all();
         $operatorList = $this->operatorList;
@@ -72,7 +72,7 @@ class ProductUnitController extends BaseController
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ProductUnit $productUnit)
+    public function edit(ProductUnit $productUnit): View
     {
         $units = ProductUnit::all();
         $operatorList = $this->operatorList;
@@ -82,7 +82,7 @@ class ProductUnitController extends BaseController
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ProductUnit $productUnit)
+    public function update(Request $request, ProductUnit $productUnit): RedirectResponse
     {
         $request->validate([
             'name'          => ['required', "unique:product_units,name," . $productUnit->id],
@@ -111,7 +111,7 @@ class ProductUnitController extends BaseController
     /**
      * Show the specified resource from storage for Remove.
      */
-    public function delete(ProductUnit $productUnit)
+    public function delete(ProductUnit $productUnit): View
     {
         return view('units.delete', compact('productUnit'));
     }
@@ -119,7 +119,7 @@ class ProductUnitController extends BaseController
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ProductUnit $productUnit)
+    public function destroy(ProductUnit $productUnit): RedirectResponse
     {
         try {
             $productUnit->delete();

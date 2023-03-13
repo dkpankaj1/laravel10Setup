@@ -1,8 +1,8 @@
 <x-app-layout>
 
     <x-slot name="header">
-        <x-page-header title="Create New Currency">
-            {{Breadcrumbs::render('currency.create')}}
+        <x-page-header title="Create New Category">
+            {{Breadcrumbs::render('category.create')}}
         </x-page-header>
     </x-slot>
 
@@ -12,14 +12,14 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{route('currency.store')}}" method="POST">
+                    <form action="{{route('category.store')}}" method="POST">
                         @csrf
 
                         {{-- :: Begin name Input --}}
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label">Name</label>
                             <div class="col-lg-9">
-                                <input type="text" class="form-control " placeholder="Enter Currency Name" name="name"
+                                <input type="text" class="form-control " placeholder="Enter warehouse Name" name="name"
                                     value="{{old('name')}}">
                                 @error('name')
                                 <div class="invalid-feedback d-block">{{$message}}</div>
@@ -28,34 +28,8 @@
                         </div>
                         {{-- :: End name Input --}}
 
-                        {{-- :: Begin name Input --}}
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label">Code</label>
-                            <div class="col-lg-9">
-                                <input type="text" class="form-control " placeholder="Enter Currency Code" name="code"
-                                    value="{{old('code')}}">
-                                @error('code')
-                                <div class="invalid-feedback d-block">{{$message}}</div>
-                                @enderror
-                            </div>
-                        </div>
-                        {{-- :: End name Input --}}
-
-                        {{-- :: Begin name Input --}}
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label">Sybmol</label>
-                            <div class="col-lg-9">
-                                <input type="text" class="form-control " placeholder="Enter Currency Symbol"
-                                    name="symbol" value="{{old('symbol')}}">
-                                @error('symbol')
-                                <div class="invalid-feedback d-block">{{$message}}</div>
-                                @enderror
-                            </div>
-                        </div>
-                        {{-- :: End name Input --}}
-
-                        {{-- :: Begin name Input --}}
-                        <div class="form-group row">
+                         {{-- :: Begin description Input --}}
+                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label">Notes</label>
                             <div class="col-lg-9">
                                 <textarea class="form-control " placeholder="A Few Words.."
@@ -65,7 +39,7 @@
                                 @enderror
                             </div>
                         </div>
-                        {{-- :: End name Input --}}
+                        {{-- :: End description Input --}}
 
                         <hr>
                         <div class="row">

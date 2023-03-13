@@ -73,21 +73,21 @@
                                             <li>
                                                 <label class="inputcheck">Create
                                                     <input type="checkbox" name="permission[]" value="roles.create"
-                                                        {{in_array("roles.show",$hasPermission) ? "checked" :"" }} />
+                                                        {{in_array("roles.create",$hasPermission) ? "checked" :"" }} />
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </li>
                                             <li>
                                                 <label class="inputcheck">Edit
                                                     <input type="checkbox" name="permission[]" value="roles.edit"
-                                                        {{in_array("roles.show",$hasPermission) ? "checked" :"" }} />
+                                                        {{in_array("roles.edit",$hasPermission) ? "checked" :"" }} />
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </li>
                                             <li>
                                                 <label class="inputcheck">Delete
                                                     <input type="checkbox" name="permission[]" value="roles.delete"
-                                                        {{in_array("roles.show",$hasPermission) ? "checked" :"" }} />
+                                                        {{in_array("roles.delete",$hasPermission) ? "checked" :"" }} />
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </li>

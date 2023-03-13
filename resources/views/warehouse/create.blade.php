@@ -1,8 +1,8 @@
 <x-app-layout>
 
     <x-slot name="header">
-        <x-page-header title="Edit Unit">
-            {{Breadcrumbs::render('units.edit',$productUnit)}}
+        <x-page-header title="Create New Warehouse">
+            {{Breadcrumbs::render('warehouse.create')}}
         </x-page-header>
     </x-slot>
 
@@ -12,16 +12,15 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{route('units.update',$productUnit)}}" method="POST">
+                    <form action="{{route('warehouse.store')}}" method="POST">
                         @csrf
-                        @method('put')
 
                         {{-- :: Begin name Input --}}
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label">Name</label>
                             <div class="col-lg-9">
-                                <input type="text" class="form-control " placeholder="Unit Name" name="name"
-                                    value="{{old('name',$productUnit->name)}}">
+                                <input type="text" class="form-control " placeholder="Enter warehouse Name" name="name"
+                                    value="{{old('name')}}">
                                 @error('name')
                                 <div class="invalid-feedback d-block">{{$message}}</div>
                                 @enderror
@@ -29,64 +28,50 @@
                         </div>
                         {{-- :: End name Input --}}
 
-                        {{-- :: Begin short name Input --}}
+                        {{-- :: Begin name Input --}}
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label">Short Name</label>
+                            <label class="col-lg-3 col-form-label">Email</label>
                             <div class="col-lg-9">
-                                <input type="text" class="form-control " placeholder="Short Name" name="short_name"
-                                    value="{{old('short_name',$productUnit->short_name)}}">
-                                @error('short_name')
+                                <input type="text" class="form-control " placeholder="example@email.com" name="email"
+                                    value="{{old('email')}}">
+                                @error('email')
                                 <div class="invalid-feedback d-block">{{$message}}</div>
                                 @enderror
                             </div>
                         </div>
-                        {{-- :: End short name Input --}}
-
-                        {{-- :: Begin base Unit Input --}}
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label">Base Unit</label>
-                            <div class="col-lg-9">
-                                <select class="select" name="base_unit">
-                                    <option value="">Choose Base Unit</option>
-                                    @foreach($units as $unit)
-                                    <option value="{{$unit->id}}" @if(old('base_unit',$productUnit->base_unit)==$unit->id) selected="selected" @endif>
-                                        {{$unit->name}} [ {{$unit->short_name}} ]</option>
-                                    @endforeach
-                                </select>
-                                @error('base_unit')
-                                <div class="invalid-feedback d-block">{{$message}}</div>
-                                @enderror
-                            </div>
-                        </div>
-
-                        {{-- :: End base Unit Input --}}
-
-
-                        {{-- :: Begin operator Input --}}
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label">Operator</label>
-                            <div class="col-lg-9">
-                                <select class="select" name="operator">
-                                    <option value="">Choose Operator</option>
-                                    @foreach($operatorList as $item)
-                                    <option value="{{$item}}" @if(old('operator',$productUnit->operator)==$item) selected="selected" @endif>
-                                        {{$item}}</option>
-                                    @endforeach
-                                </select>
-                                @error('operator')
-                                <div class="invalid-feedback d-block">{{$message}}</div>
-                                @enderror
-                            </div>
-                        </div>
-
-                        {{-- :: End operator Input --}}
+                        {{-- :: End name Input --}}
 
                         {{-- :: Begin name Input --}}
                         <div class="form-group row">
+                            <label class="col-lg-3 col-form-label">Phone</label>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control " placeholder="+91 97xxxxx940"
+                                    name="phone" value="{{old('phone')}}">
+                                @error('phone')
+                                <div class="invalid-feedback d-block">{{$message}}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        {{-- :: End name Input --}}
+
+                        {{-- :: Begin name Input --}}
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label">Address</label>
+                            <div class="col-lg-9">
+                                <textarea class="form-control " placeholder="Example, XYZ Address - 27XX49"
+                                    name="address">{{old('address')}}</textarea>
+                                @error('address')
+                                <div class="invalid-feedback d-block">{{$message}}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        {{-- :: End name Input --}}
+                         {{-- :: Begin name Input --}}
+                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label">Notes</label>
                             <div class="col-lg-9">
                                 <textarea class="form-control " placeholder="A Few Words.."
-                                    name="description">{{old('description',$productUnit->description)}}</textarea>
+                                    name="description">{{old('description')}}</textarea>
                                 @error('description')
                                 <div class="invalid-feedback d-block">{{$message}}</div>
                                 @enderror

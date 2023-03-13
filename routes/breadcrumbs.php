@@ -2,6 +2,21 @@
 
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 
+// :: Begin Category ::
+Breadcrumbs::for('category.index', function ($trail) {
+    $trail->push('Category', route('category.index'));
+});
+Breadcrumbs::for('category.create', function ($trail) {
+    $trail->parent('warehouse.index');
+    $trail->push('Create', route('category.create'));
+});
+Breadcrumbs::for('category.edit', function ($trail,$category) {
+    $trail->parent('category.index');
+    $trail->push($category->name);
+    $trail->push('Edit', route('category.edit',$category));
+});
+// :: End Category ::
+
 // ::Begin Currency ::
 Breadcrumbs::for('currency', function ($trail) {
     $trail->push('Manage Currency Setting', route('currency.index'));
@@ -65,3 +80,19 @@ Breadcrumbs::for('units.edit', function ($trail,$productUnit) {
     $trail->push('Edit', route('units.edit',$productUnit));
 });
 // :: End Unit ::
+
+// :: Begin Unit ::
+Breadcrumbs::for('warehouse.index', function ($trail) {
+    $trail->push('Warehouse', route('warehouse.index'));
+});
+Breadcrumbs::for('warehouse.create', function ($trail) {
+    $trail->parent('warehouse.index');
+    $trail->push('Create', route('warehouse.create'));
+});
+Breadcrumbs::for('warehouse.edit', function ($trail,$warehouse) {
+    $trail->parent('warehouse.index');
+    $trail->push($warehouse->name);
+    $trail->push('Edit', route('warehouse.edit',$warehouse));
+});
+// :: End Unit ::
+
