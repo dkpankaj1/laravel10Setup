@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Supplier;
+use App\Models\Customer;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
-class SupplierController extends BaseController
+class CustomerController extends BaseController
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $suppliers = Supplier::all();
-        return view('supplier.list', compact('suppliers'));
+        $customers = Customer::all();
+        return view('customer.list', compact('customers'));
     }
 
     /**
@@ -24,13 +24,13 @@ class SupplierController extends BaseController
      */
     public function create()
     {
-        return view('supplier.create');
+        return view('customer.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request):RedirectResponse
+    public function store(Request $request)
     {
         $validated = $request->validate([
             'name'      => ["required"],
@@ -49,8 +49,8 @@ class SupplierController extends BaseController
         ];
 
         try {
-            Supplier::create($newCurrencyData);
-            return Redirect::route('supplier.index')->with($this->sendWithSuccess('Supplier Create Success'));
+            Customer::create($newCurrencyData);
+            return Redirect::route('customer.index')->with($this->sendWithSuccess('Customer Create Success'));
         } catch (\Exception $e) {
             return Redirect::back()->with($this->sendWithError($e->getMessage()));
         }
@@ -59,7 +59,7 @@ class SupplierController extends BaseController
     /**
      * Display the specified resource.
      */
-    public function show(Supplier $supplier)
+    public function show(Customer $customer)
     {
         //
     }
@@ -67,15 +67,15 @@ class SupplierController extends BaseController
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Supplier $supplier)
+    public function edit(Customer $customer)
     {
-        return view('supplier.edit', compact('supplier'));
+        return view('customer.edit', compact('customer'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Supplier $supplier)
+    public function update(Request $request, Customer $customer)
     {
         $validated = $request->validate([
             'name'      => ["required"],
@@ -85,17 +85,17 @@ class SupplierController extends BaseController
             'remark'   => 'nullable',
         ]);
 
-        $newSupplierData = [
-            'name'      => $validated['name'] ?? $supplier->name,
-            'phone'     => $validated['phone'] ?? $supplier->phone,
-            'email'     => $validated['email'] ?? $supplier->email,
-            'address'   => $validated['address'] ?? $supplier->address,
-            'remark'   => $validated['remark'] ?? $supplier->remark,
+        $newCustomerData = [
+            'name'      => $validated['name'] ?? $customer->name,
+            'phone'     => $validated['phone'] ?? $customer->phone,
+            'email'     => $validated['email'] ?? $customer->email,
+            'address'   => $validated['address'] ?? $customer->address,
+            'remark'   => $validated['remark'] ?? $customer->remark,
         ];
 
         try {
-            $supplier->update($newSupplierData);
-            return Redirect::route('supplier.index')->with($this->sendWithSuccess('Supplier Update Success'));
+            $customer->update($newCustomerData);
+            return Redirect::route('customer.index')->with($this->sendWithSuccess('Customer Update Success'));
         } catch (\Exception $e) {
             return Redirect::back()->with($this->sendWithError($e->getMessage()));
         }
@@ -104,19 +104,20 @@ class SupplierController extends BaseController
     /**
      * Remove the specified resource from storage.
      */
-    public function delete(Supplier $supplier): View
+    public function delete(Customer $supplier): View
     {
-        return view('supplier.delete', compact('supplier'));
+        return view('customer.delete', compact('customer'));
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Supplier $supplier)
+    public function destroy(Customer $customer)
     {
         try {
-            $supplier->delete();
-            return Redirect::back()->with($this->sendWithSuccess('Supplier Delete Success.'));
+            $customer->delete();
+            return Redirect::back()->with($this->sendWithSuccess('Customer Delete Success.'));
         } catch (\Exception $e) {
             return Redirect::back()->with($this->sendWithError($e->getMessage()));
         }

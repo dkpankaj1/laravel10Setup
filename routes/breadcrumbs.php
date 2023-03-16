@@ -32,6 +32,21 @@ Breadcrumbs::for('currency.edit', function ($trail, $currency) {
 });
 // :: End Currency ::
 
+// ::Begin Customer ::
+Breadcrumbs::for('customer', function ($trail) {
+    $trail->push('Customer', route('customer.index'));
+});
+Breadcrumbs::for('customer.create', function ($trail) {
+    $trail->parent('customer');
+    $trail->push('Create', route('customer.create'));
+});
+Breadcrumbs::for('customer.edit', function ($trail, $currency) {
+    $trail->parent('customer');
+    $trail->push($currency->name);
+    $trail->push('Edit', route('customer.edit', $currency));
+});
+// :: End Customer ::
+
 
 // :: Begin Dashboard ::
 Breadcrumbs::for('dashboard', function ($trail) {

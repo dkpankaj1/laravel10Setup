@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\BaseController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CurrencyController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductUnitController;
 use App\Http\Controllers\ProfileController;
@@ -42,6 +43,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('currency/{currency}/delete', [CurrencyController::class, 'delete'])->name('currency.delete');
     Route::delete('currency/{currency}/delete', [CurrencyController::class, 'destroy'])->name('currency.destroy');
     //  :: End currency 
+
+    //  :: Begin supplier 
+    Route::resource('customer', CustomerController::class)->only(['index', 'create', 'store', 'edit', 'update']);
+    Route::get('customer/{customer}/delete', [CustomerController::class, 'delete'])->name('customer.delete');
+    Route::delete('customer/{customer}/delete', [CustomerController::class, 'destroy'])->name('customer.destroy');
+    //  :: End supplier 
+
 
     // :: Begin Dashboard Route 
     Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
