@@ -104,7 +104,7 @@ class CustomerController extends BaseController
     /**
      * Remove the specified resource from storage.
      */
-    public function delete(Customer $supplier): View
+    public function delete(Customer $customer): View
     {
         return view('customer.delete', compact('customer'));
     }
