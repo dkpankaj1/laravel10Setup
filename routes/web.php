@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductUnitController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RolesAndPermissionsController;
+use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\SystemSettingController;
 use App\Http\Controllers\WarehouseController;
 use Illuminate\Support\Facades\Route;
@@ -43,7 +44,7 @@ Route::group(['middleware' => ['auth']], function () {
     //  :: End currency 
 
     // :: Begin Dashboard Route 
-    Route::get('/dashboard',[HomeController::class,'dashboard'] )->name('dashboard');
+    Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
     // :: End Dashboard Route 
 
     // :: Begin set-appSession 
@@ -78,6 +79,12 @@ Route::group(['middleware' => ['auth']], function () {
     });
     // :: End User Profile
 
+    //  :: Begin supplier 
+    Route::resource('supplier', SupplierController::class)->only(['index', 'create', 'store', 'edit', 'update']);
+    Route::get('supplier/{supplier}/delete', [SupplierController::class, 'delete'])->name('supplier.delete');
+    Route::delete('supplier/{supplier}/delete', [SupplierController::class, 'destroy'])->name('supplier.destroy');
+    //  :: End supplier 
+
     // :: Begin system settion 
     Route::get('setting/{systemSetting:name}/manage', [SystemSettingController::class, 'show'])->name('setting.system.manage');
     Route::put('setting/{systemSetting:name}/manage', [SystemSettingController::class, 'update'])->name('setting.system.manage');
@@ -85,6 +92,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     //  :: Begin warehouse 
     Route::resource('warehouse', WarehouseController::class)->only(['index', 'create', 'store', 'edit', 'update']);
+    Route::get('warehouse/all/pdf', [WarehouseController::class, 'generatePdf'])->name('warehouse.generatePdf');
     Route::get('warehouse/{warehouse}/delete', [WarehouseController::class, 'delete'])->name('warehouse.delete');
     Route::delete('warehouse/{warehouse}/delete', [WarehouseController::class, 'destroy'])->name('warehouse.destroy');
     //  :: End warehouse 

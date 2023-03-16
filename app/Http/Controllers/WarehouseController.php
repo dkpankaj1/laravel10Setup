@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Warehouse;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-
 
 class WarehouseController extends BaseController
 {
@@ -120,5 +120,12 @@ class WarehouseController extends BaseController
         } catch (\Exception $e) {
             return Redirect::back()->with($this->sendWithError($e->getMessage()));
         }
+    }
+
+    public function generatePdf()
+    {
+        $data =  Warehouse::get();
+        $pdf = Pdf::loadView('warehouse.pdf',['data' => $data]);
+        return $pdf->download('invoice.pdf');
     }
 }

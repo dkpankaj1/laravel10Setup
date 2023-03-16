@@ -19,7 +19,7 @@
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label">Name</label>
                             <div class="col-lg-9">
-                                <input type="text" class="form-control " placeholder="Enter warehouse Name" name="name"
+                                <input type="text" class="form-control " placeholder="Enter category Name" name="name"
                                     value="{{old('name',$category->name)}}">
                                 @error('name')
                                 <div class="invalid-feedback d-block">{{$message}}</div>

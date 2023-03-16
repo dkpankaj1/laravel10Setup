@@ -14,7 +14,7 @@ class CurrencyController extends BaseController
      * Display a listing of the resource.
      */
     public function index(): View
-    {
+    { 
         $curencys = Currency::all();
         return view('currency.list', compact('curencys'));
     }

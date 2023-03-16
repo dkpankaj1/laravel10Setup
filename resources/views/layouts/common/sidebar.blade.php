@@ -218,12 +218,13 @@
                         <li><a href="customerreport.html">Customer Report</a></li>
                     </ul>
                 </li>
+                
                 <li class="submenu">
                     <a href="javascript:void(0);"><img src="{{asset('assets/img/icons/users1.svg')}}" alt="img"><span>
                             Users</span> <span class="menu-arrow"></span></a>
                     <ul>
-                        <li><a href="newuser.html">New User </a></li>
-                        <li><a href="userlists.html">Users List</a></li>
+                        <li><a href="{{route('supplier.index')}}">Supplier</a></li>
+                        <li><a href="userlists.html">Users</a></li>
                     </ul>
                 </li>
                 <li class="submenu">

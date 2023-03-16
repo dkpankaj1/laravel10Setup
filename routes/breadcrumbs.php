@@ -7,13 +7,13 @@ Breadcrumbs::for('category.index', function ($trail) {
     $trail->push('Category', route('category.index'));
 });
 Breadcrumbs::for('category.create', function ($trail) {
-    $trail->parent('warehouse.index');
+    $trail->parent('category.index');
     $trail->push('Create', route('category.create'));
 });
-Breadcrumbs::for('category.edit', function ($trail,$category) {
+Breadcrumbs::for('category.edit', function ($trail, $category) {
     $trail->parent('category.index');
     $trail->push($category->name);
-    $trail->push('Edit', route('category.edit',$category));
+    $trail->push('Edit', route('category.edit', $category));
 });
 // :: End Category ::
 
@@ -25,10 +25,10 @@ Breadcrumbs::for('currency.create', function ($trail) {
     $trail->parent('currency');
     $trail->push('Create', route('currency.create'));
 });
-Breadcrumbs::for('currency.edit', function ($trail,$currency) {
+Breadcrumbs::for('currency.edit', function ($trail, $currency) {
     $trail->parent('currency');
     $trail->push($currency->name);
-    $trail->push('Edit', route('currency.edit',$currency));
+    $trail->push('Edit', route('currency.edit', $currency));
 });
 // :: End Currency ::
 
@@ -47,10 +47,10 @@ Breadcrumbs::for('roles_create', function ($trail) {
     $trail->parent('roles');
     $trail->push('Create', route('roles.create'));
 });
-Breadcrumbs::for('roles_edit', function ($trail,$role) {
+Breadcrumbs::for('roles_edit', function ($trail, $role) {
     $trail->parent('roles');
     $trail->push($role->name);
-    $trail->push('Edit', route('roles.edit',$role));
+    $trail->push('Edit', route('roles.edit', $role));
 });
 // :: End Role And Permission ::
 
@@ -60,9 +60,26 @@ Breadcrumbs::for('profile', function ($trail) {
 });
 // :: End User Profile ::
 
+
+// ::Begin Currency ::
+Breadcrumbs::for('supplier', function ($trail) {
+    $trail->push('Supplier', route('supplier.index'));
+});
+Breadcrumbs::for('supplier.create', function ($trail) {
+    $trail->parent('supplier');
+    $trail->push('Create', route('supplier.create'));
+});
+Breadcrumbs::for('supplier.edit', function ($trail, $currency) {
+    $trail->parent('supplier');
+    $trail->push($currency->name);
+    $trail->push('Edit', route('supplier.edit', $currency));
+});
+// :: End Currency ::
+
+
 // Begin System Setting ::
-Breadcrumbs::for('system.settion.manage', function ($trail,$systemSetting) {
-    $trail->push('Manage System Setting', route('setting.system.manage',$systemSetting));
+Breadcrumbs::for('system.settion.manage', function ($trail, $systemSetting) {
+    $trail->push('Manage System Setting', route('setting.system.manage', $systemSetting));
 });
 // End System Setting ::
 
@@ -74,10 +91,10 @@ Breadcrumbs::for('units.create', function ($trail) {
     $trail->parent('units.index');
     $trail->push('Create', route('units.create'));
 });
-Breadcrumbs::for('units.edit', function ($trail,$productUnit) {
+Breadcrumbs::for('units.edit', function ($trail, $productUnit) {
     $trail->parent('units.index');
     $trail->push($productUnit->name);
-    $trail->push('Edit', route('units.edit',$productUnit));
+    $trail->push('Edit', route('units.edit', $productUnit));
 });
 // :: End Unit ::
 
@@ -89,10 +106,9 @@ Breadcrumbs::for('warehouse.create', function ($trail) {
     $trail->parent('warehouse.index');
     $trail->push('Create', route('warehouse.create'));
 });
-Breadcrumbs::for('warehouse.edit', function ($trail,$warehouse) {
+Breadcrumbs::for('warehouse.edit', function ($trail, $warehouse) {
     $trail->parent('warehouse.index');
     $trail->push($warehouse->name);
-    $trail->push('Edit', route('warehouse.edit',$warehouse));
+    $trail->push('Edit', route('warehouse.edit', $warehouse));
 });
 // :: End Unit ::
-

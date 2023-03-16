@@ -4,14 +4,14 @@
 
         <x-page-header-with-btn>
 
-            <x-slot name="title">Category Settings</x-slot>
+            <x-slot name="title">Manage Supplier</x-slot>
 
             <x-slot name="breadcrumbs">
-                {{Breadcrumbs::render('category.index')}}
+                {{Breadcrumbs::render('supplier')}}
             </x-slot>
 
-            <a class="btn btn-added" href="{{route('category.create')}}"><img src="assets/img/icons/plus.svg" alt="img"
-                    class="me-1" />Add New Category</a>
+            <a class="btn btn-added" href="{{route('supplier.create')}}"><img src="assets/img/icons/plus.svg" alt="img"
+                    class="me-1" />Add New Currency</a>
         </x-page-header-with-btn>
 
     </x-slot>
@@ -48,22 +48,28 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Category name</th>
-                            <th>Description</th>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Address</th>
+                            <th>Remark</th>
                             <th class="text-end">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($categorys as $category)
+                        @foreach($suppliers as $supplier)
                         <tr>
-                            <td>CTG#{{$category->id}}</td>
-                            <td>{{$category->name}}</td>
-                            <td>{{$category->description}}</td>
+                            <td>CUR#{{$supplier->id}}</td>
+                            <td>{{$supplier->name}}</td>
+                            <td>{{$supplier->phone}}</td>
+                            <td>{{$supplier->email}}</td>
+                            <td>{{$supplier->address}}</td>
+                            <td>{{$supplier->remark}}</td>
                             <td class="text-end">
-                                <a class="me-3" href="{{route('category.edit',$category)}}">
+                                <a class="me-3" href="{{route('supplier.edit',$supplier)}}">
                                     <img src="assets/img/icons/edit.svg" alt="img" />
                                 </a>
-                                <a class="me-3 d3l3t3btn" data-attr="{{route('category.delete',$category)}}">
+                                <a class="me-3 d3l3t3btn" data-attr="{{route('supplier.delete',$supplier)}}">
                                     <img src="assets/img/icons/delete.svg" alt="img" />
                                 </a>
                             </td>
