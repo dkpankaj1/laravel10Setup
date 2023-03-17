@@ -80,7 +80,7 @@
 
     @yield('page_script')
 
-    <script src="{{asset('assets/js/script.js')}}"></script>
+    <script src="{{asset('assets/js/script.min.js')}}"></script>
 
     @if(Session::has('status'))
     @if(Session::get('status')['success'] === true)

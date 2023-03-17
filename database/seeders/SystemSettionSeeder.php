@@ -22,6 +22,7 @@ class SystemSettionSeeder extends Seeder
             'time_zone'             => null,
             'date_format'           => null,
             'default_warehouse'     => null,
+            'current_app_session'   => 4,
             'default_app_session'   => null,
             'default_currency'      => null
         ];

@@ -9,5 +9,5 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Customer extends Model
 {
     use HasFactory,SoftDeletes;
-    protected $fillable =['name','email','phone','address','remark'];
+    protected $fillable =['name','email','phone','address','remark','session_id'];
 }

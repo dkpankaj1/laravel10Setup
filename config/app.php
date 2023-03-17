@@ -154,6 +154,8 @@ return [
     |
     */
 
+    'appSession' =>env('APPSESSION_NAME'),
+
     'providers' => [
 
         /*

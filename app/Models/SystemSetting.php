@@ -18,6 +18,7 @@ class SystemSetting extends Model
         'time_zone',
         'date_format',
         'default_warehouse',
+        'current_app_session',
         'default_app_session',
         'default_currency'
     ];

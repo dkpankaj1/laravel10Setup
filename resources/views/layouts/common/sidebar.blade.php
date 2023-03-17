@@ -87,9 +87,7 @@
                             People</span> <span class="menu-arrow"></span></a>
                     <ul>
                         <li><a href="{{route('customer.index')}}">Customer List</a></li>
-                        <li><a href="{{route('customer.create')}}">Add Customer </a></li>
                         <li><a href="{{route('supplier.index')}}">Supplier List</a></li>
-                        <li><a href="{{route('supplier.create')}}">Add Supplier </a></li>
                     </ul>
                 </li>
 

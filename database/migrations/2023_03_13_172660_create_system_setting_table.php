@@ -23,11 +23,13 @@ return new class extends Migration
             $table->unsignedBigInteger('default_warehouse')->nullable();
             $table->unsignedBigInteger('default_currency')->nullable();
             $table->unsignedBigInteger('default_unit')->nullable();
+            $table->unsignedBigInteger('current_app_session')->nullable();
             $table->unsignedBigInteger('default_app_session')->nullable();
 
             $table->foreign('default_warehouse')->references('id')->on('warehouses');
             $table->foreign('default_currency')->references('id')->on('currencies');
             $table->foreign('default_unit')->references('id')->on('product_units');
+            $table->foreign('current_app_session')->references('id')->on('application_sessions');
             $table->foreign('default_app_session')->references('id')->on('application_sessions');
             
             $table->timestamps();

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\SystemSetting;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class CustomerController extends BaseController
 {
@@ -15,7 +17,7 @@ class CustomerController extends BaseController
      */
     public function index()
     {
-        $customers = Customer::all();
+        $customers = Customer::where('session_id',Session::get(config('app.appSession')))->get();
         return view('customer.list', compact('customers'));
     }
 
@@ -37,19 +39,20 @@ class CustomerController extends BaseController
             'phone'     => ["required"],
             'email'     => 'nullable',
             'address'   => 'nullable',
-            'remark'   => 'nullable',
+            'remark'    => 'nullable',
         ]);
 
-        $newCurrencyData = [
-            'name'      => $validated['name'],
-            'phone'     => $validated['phone'],
-            'email'     => $validated['email'],
-            'address'   => $validated['address'],
-            'remark'   => $validated['address'],
+        $newCustomer = [
+            'name'          => $validated['name'],
+            'phone'         => $validated['phone'],
+            'email'         => $validated['email'],
+            'address'       => $validated['address'],
+            'remark'        => $validated['address'],
+            'session_id'    => SystemSetting::first()->current_app_session,
         ];
 
         try {
-            Customer::create($newCurrencyData);
+            Customer::create($newCustomer);
             return Redirect::route('customer.index')->with($this->sendWithSuccess('Customer Create Success'));
         } catch (\Exception $e) {
             return Redirect::back()->with($this->sendWithError($e->getMessage()));
@@ -85,7 +88,7 @@ class CustomerController extends BaseController
             'remark'   => 'nullable',
         ]);
 
-        $newCustomerData = [
+        $updateCustomer = [
             'name'      => $validated['name'] ?? $customer->name,
             'phone'     => $validated['phone'] ?? $customer->phone,
             'email'     => $validated['email'] ?? $customer->email,
@@ -94,7 +97,7 @@ class CustomerController extends BaseController
         ];
 
         try {
-            $customer->update($newCustomerData);
+            $customer->update($updateCustomer);
             return Redirect::route('customer.index')->with($this->sendWithSuccess('Customer Update Success'));
         } catch (\Exception $e) {
             return Redirect::back()->with($this->sendWithError($e->getMessage()));

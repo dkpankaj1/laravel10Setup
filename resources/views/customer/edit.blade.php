@@ -31,7 +31,7 @@
 
                         {{-- :: Begin phone Input --}}
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label">Code</label>
+                            <label class="col-lg-3 col-form-label">Phone</label>
                             <div class="col-lg-9">
                                 <input type="text" class="form-control " placeholder="+91 9794xxx940" name="phone"
                                     value="{{old('phone',$customer->phone)}}">

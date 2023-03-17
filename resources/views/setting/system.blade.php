@@ -57,7 +57,8 @@
                             <select class="select" name="time_zone">
                                 <option value="">Choose Time Zone</option>
                                 @foreach($defaultTimeZone as $item)
-                                <option value="{{$item}}" @if(old('time_zone',$systemSetting->time_zone) == $item) selected="selected" @endif>{{$item}}</option>
+                                <option value="{{$item}}" @if(old('time_zone',$systemSetting->time_zone) == $item)
+                                    selected="selected" @endif>{{$item}}</option>
                                 @endforeach
                             </select>
                             @error('time_zone')
@@ -66,17 +67,19 @@
                         </div>
                     </div>
 
-                     {{-- :: default warehouse Input :: --}}
-                     <div class="col-lg-3 col-sm-6 col-12">
+                    {{-- :: default warehouse Input :: --}}
+                    <div class="col-lg-3 col-sm-6 col-12">
                         <div class="form-group">
                             <label>Default Warehouses <span class="manitory">*</span></label>
                             <select class="select" name="default_warehouse">
                                 <option value="">Choose warehouses</option>
-                                @foreach($warehouses as $item) 
-                                <option value="{{$item->id}}" @if(old('default_warehouse',$systemSetting->default_warehouse) == $item->id) selected="selected" @endif >{{$item->name}}</option>
-                                    @endforeach
+                                @foreach($warehouses as $item)
+                                <option value="{{$item->id}}" @if(old('default_warehouse',$systemSetting->
+                                    default_warehouse) == $item->id) selected="selected" @endif >{{$item->name}}
+                                </option>
+                                @endforeach
                             </select>
-                            @error('default_currency')
+                            @error('default_warehouse')
                             <div class="invalid-feedback d-block">{{$message}}</div>
                             @enderror
                         </div>
@@ -89,9 +92,11 @@
                             <label>Default Currency <span class="manitory">*</span></label>
                             <select class="select" name="default_currency">
                                 <option value="">Choose Currency</option>
-                                @foreach($currencys as $item) 
-                                <option value="{{$item->id}}" @if(old('default_currency',$systemSetting->default_currency) == $item->id) selected="selected" @endif>{{$item->name}} [ {{$item->symbol}} ]</option>
-                                    @endforeach
+                                @foreach($currencys as $item)
+                                <option value="{{$item->id}}" @if(old('default_currency',$systemSetting->
+                                    default_currency) == $item->id) selected="selected" @endif>{{$item->name}}
+                                    [{{$item->symbol}} ]</option>
+                                @endforeach
                             </select>
                             @error('default_currency')
                             <div class="invalid-feedback d-block">{{$message}}</div>
@@ -106,7 +111,8 @@
                             <select class="select" name="date_format">
                                 <option value="">Choose Date Format</option>
                                 @foreach($defaultDateFormat as $item)
-                                <option value="{{$item}}" @if(old('date_format',$systemSetting->date_format) == $item) selected="selected" @endif >{{$item}}</option>
+                                <option value="{{$item}}" @if(old('date_format',$systemSetting->date_format) == $item)
+                                    selected="selected" @endif >{{$item}}</option>
                                 @endforeach
                             </select>
                             @error('date_format')
@@ -122,10 +128,30 @@
                             <select class="select" name="default_app_session">
                                 <option value="">Choose Session</option>
                                 @foreach($appSessions as $item)
-                                <option value="{{$item->id}}" @if(old('default_app_session',$systemSetting->default_app_session) == $item->id) selected="selected" @endif>{{$item->name}}</option>
+                                <option value="{{$item->id}}" @if(old('default_app_session',$systemSetting->
+                                    default_app_session) == $item->id) selected="selected" @endif>{{$item->name}}
+                                </option>
                                 @endforeach
                             </select>
                             @error('default_app_session')
+                            <div class="invalid-feedback d-block">{{$message}}</div>
+                            @enderror
+                        </div>
+                    </div>
+
+                    {{-- :: default session Input :: --}}
+                    <div class="col-lg-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Current Session<span class="manitory">*</span></label>
+                            <select class="select" name="current_app_session">
+                                <option value="">Choose Session</option>
+                                @foreach($appSessions as $item)
+                                <option value="{{$item->id}}" @if(old('current_app_session',$systemSetting->
+                                    current_app_session) == $item->id)selected="selected" @endif >{{$item->name}}
+                                </option>
+                                @endforeach
+                            </select>
+                            @error('current_app_session')
                             <div class="invalid-feedback d-block">{{$message}}</div>
                             @enderror
                         </div>

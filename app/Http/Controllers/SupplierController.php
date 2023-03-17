@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Supplier;
+use App\Models\SystemSetting;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class SupplierController extends BaseController
 {
@@ -15,7 +17,7 @@ class SupplierController extends BaseController
      */
     public function index()
     {
-        $suppliers = Supplier::all();
+        $suppliers = Supplier::where('session_id',Session::get(config('app.appSession')))->get();
         return view('supplier.list', compact('suppliers'));
     }
 
@@ -33,19 +35,20 @@ class SupplierController extends BaseController
     public function store(Request $request):RedirectResponse
     {
         $validated = $request->validate([
-            'name'      => ["required"],
-            'phone'     => ["required"],
-            'email'     => 'nullable',
-            'address'   => 'nullable',
-            'remark'   => 'nullable',
+            'name'          => ["required"],
+            'phone'         => ["required"],
+            'email'         => 'nullable',
+            'address'       => 'nullable',
+            'remark'        => 'nullable',
         ]);
 
         $newCurrencyData = [
-            'name'      => $validated['name'],
-            'phone'     => $validated['phone'],
-            'email'     => $validated['email'],
-            'address'   => $validated['address'],
-            'remark'   => $validated['address'],
+            'name'          => $validated['name'],
+            'phone'         => $validated['phone'],
+            'email'         => $validated['email'],
+            'address'       => $validated['address'],
+            'remark'        => $validated['address'],
+            'session_id'    => SystemSetting::first()->current_app_session,
         ];
 
         try {
