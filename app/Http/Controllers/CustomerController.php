@@ -15,9 +15,9 @@ class CustomerController extends BaseController
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index():View
     {
-        $customers = Customer::where('session_id',Session::get(config('app.appSession')))->get();
+        $customers = Customer::where('session_id',$this->getAppSessionId())->get();
         return view('customer.list', compact('customers'));
     }
 
@@ -32,7 +32,7 @@ class CustomerController extends BaseController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request):RedirectResponse
     {
         $validated = $request->validate([
             'name'      => ["required"],
@@ -70,7 +70,7 @@ class CustomerController extends BaseController
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Customer $customer)
+    public function edit(Customer $customer):View
     {
         return view('customer.edit', compact('customer'));
     }
@@ -78,7 +78,7 @@ class CustomerController extends BaseController
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Customer $customer)
+    public function update(Request $request, Customer $customer):RedirectResponse
     {
         $validated = $request->validate([
             'name'      => ["required"],
@@ -116,7 +116,7 @@ class CustomerController extends BaseController
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Customer $customer)
+    public function destroy(Customer $customer):RedirectResponse
     {
         try {
             $customer->delete();

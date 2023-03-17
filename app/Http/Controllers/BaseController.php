@@ -8,6 +8,7 @@ use Config;
 use DB;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
+use Nette\Utils\Strings;
 
 class BaseController extends Controller
 {
@@ -101,17 +102,35 @@ class BaseController extends Controller
     // Get Current ApplicationSession
     public function setAppSession(ApplicationSession $appSession): RedirectResponse
     {
-        session()->forget('appSession');
-        session()->put("appSession", ["id" => $appSession->id, "name" => $appSession->name]);
-        return Redirect::back()->with($this->sendWithSuccess('Session Switch Success.'));
+        session()->forget(config('app.appSession'));
+        session()->put(config('app.appSession'), ["id" => $appSession->id, "name" => $appSession->name]);
+        return Redirect::back()->with($this->sendWithSuccess('Session Switched.'));
     }
 
     // Get Current ApplicationSession
     public function getAppSession(): array
     {
         $currentSession = null;
-        if (session()->has('appSession')) {
-            $currentSession = session()->get('appSession');
+        if (session()->has(config('app.appSession'))) {
+            $currentSession = session()->get(config('app.appSession'));
+        }
+        return  $currentSession;
+    }
+    // Get Current ApplicationSessionName
+    public function getAppSessionName(): string
+    {
+        $currentSession = null;
+        if (session()->has(config('app.appSession'))) {
+            $currentSession = session()->get(config('app.appSession'))['name'];
+        }
+        return  $currentSession;
+    }
+    // Get Current ApplicationSessionId
+    public function getAppSessionId(): int
+    {
+        $currentSession = null;
+        if (session()->has(config('app.appSession'))) {
+            $currentSession = session()->get(config('app.appSession'))['id'];
         }
         return  $currentSession;
     }

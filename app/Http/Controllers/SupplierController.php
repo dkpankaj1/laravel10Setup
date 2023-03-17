@@ -17,7 +17,7 @@ class SupplierController extends BaseController
      */
     public function index()
     {
-        $suppliers = Supplier::where('session_id',Session::get(config('app.appSession')))->get();
+        $suppliers = Supplier::where('session_id',$this->getAppSessionId())->get();
         return view('supplier.list', compact('suppliers'));
     }
 

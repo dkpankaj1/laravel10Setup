@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\Controllers\BaseController;
 use App\Models\ApplicationSession;
 use App\Models\SystemSetting;
 use Illuminate\Support\Facades\View;
@@ -23,15 +24,21 @@ class AppServiceProvider extends ServiceProvider
     {
         try {
             $system_setting = SystemSetting::first();
+
             if (!session()->has(config('app.appSession'))) {
+
                 if (!is_null($system_setting->default_app_session)) {
+
                     $appSession = ApplicationSession::find($system_setting->default_app_session);
                 } else {
+
                     $appSession = ApplicationSession::first();
                 }
+
                 session()->put(config('app.appSession'), ["id" => $appSession->id, "name" => $appSession->name]);
             }
         } catch (\Exception $e) {
+
             echo $e->getMessage();
         }
 
