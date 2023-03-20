@@ -34,7 +34,7 @@ class ProductFactory extends Factory
             'purchase_unit_id'  => random_int(1, 2),
             'sell_unit_id'      => random_int(1, 2),
             'category_id'       => random_int(1, 3),
-            'session_id'        =>  SystemSetting::first()->current_app_session
+            'session_id'        =>  random_int(1, 4),
         ];
     }
 }

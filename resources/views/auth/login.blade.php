@@ -21,6 +21,7 @@
                         <h4>Please login to your account</h4>
                     </div>
 
+
                     {{-- :: Begin Email Input :: --}}
                     <div class="form-login">
                         <label>{{_("Email")}}</label>
@@ -34,7 +35,7 @@
                         <ul class="text-sm mt-2 text-danger">
                             @foreach ((array) $errors->get('email') as $message)
                             <li>{{ $message }}</li>
-                            @endforeach
+                            @endforeach 
                         </ul>
                         @endif
                     </div>

@@ -82,6 +82,7 @@
                     <ul>
                         <li><a href="{{route('customer.index')}}">Customer List</a></li>
                         <li><a href="{{route('supplier.index')}}">Supplier List</a></li>
+                        <li><a href="{{route('users.index')}}">Users List</a></li>
                     </ul>
                 </li>
 
@@ -99,15 +100,7 @@
                         <li><a href="customerreport.html">Customer Report</a></li>
                     </ul>
                 </li>
-                
-                <li class="submenu">
-                    <a href="javascript:void(0);"><img src="{{asset('assets/img/icons/users1.svg')}}" alt="img"><span>
-                            Users</span> <span class="menu-arrow"></span></a>
-                    <ul>
-                        <li><a href="userlist.html">User List</a></li>
-                        <li><a href="adduser.html">Add User</a></li>
-                    </ul>
-                </li>
+            
                 <li class="submenu">
                     <a href="javascript:void(0);"><img src="{{asset('assets/img/icons/settings.svg')}}" alt="img"><span>
                             Settings</span> <span class="menu-arrow"></span></a>

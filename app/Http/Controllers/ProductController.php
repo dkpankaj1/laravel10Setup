@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ProductsExport;
 use App\Models\BarcodeType;
 use App\Models\Category;
 use App\Models\Product;
@@ -12,10 +13,10 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Validation\Rule;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends BaseController
-{   
+{
     /**
      * Display a listing of the resource.
      */
@@ -24,7 +25,7 @@ class ProductController extends BaseController
         $products = $this->getAllRecord(new Product());
 
         $showProduct = [];
-        foreach($products as $product){
+        foreach ($products as $product) {
             $record = new Product();
             $record->id             = $product->id;
             $record->code           = $product->code;
@@ -40,11 +41,11 @@ class ProductController extends BaseController
             $record->sell_unit      = $product->sellUnit->name;
             $record->category       = $product->category->name;
             $record->description    = $product->description;
-            
-            array_push($showProduct,$record);
+
+            array_push($showProduct, $record);
         }
         // dd($showProduct);
-        return view('product.list',compact('showProduct'));
+        return view('product.list', compact('showProduct'));
     }
 
     /**
@@ -55,8 +56,8 @@ class ProductController extends BaseController
         $categories = Category::all();
         $ProductUnits = ProductUnit::all();
         $texTypes = TexType::all();
-        $barcodeTypes =BarcodeType::all();
-        return view('product.create',compact('categories','ProductUnits','texTypes','barcodeTypes'));
+        $barcodeTypes = BarcodeType::all();
+        return view('product.create', compact('categories', 'ProductUnits', 'texTypes', 'barcodeTypes'));
     }
 
     /**
@@ -82,7 +83,7 @@ class ProductController extends BaseController
             'purchase_unit'     => ['required'],
             'sell_unit'         => ['required'],
             'category'          => ['required']
-        ],[
+        ], [
             'name.required' => 'The product name field is required',
             'code.required' => 'The product code field is required',
         ]);
@@ -104,7 +105,7 @@ class ProductController extends BaseController
             'purchase_unit_id'  =>  $validated['purchase_unit'],
             'sell_unit_id'      =>  $validated['sell_unit'],
             'category_id'       =>  $validated['category'],
-            'session_id'        =>  SystemSetting::first()->current_app_session
+            'session_id'        =>  $this->getAppSessionId() ?? SystemSetting::first()->current_app_session
         ];
 
         try {
@@ -131,8 +132,8 @@ class ProductController extends BaseController
         $categories = Category::all();
         $ProductUnits = ProductUnit::all();
         $texTypes = TexType::all();
-        $barcodeTypes =BarcodeType::all();
-        return view('product.edit',compact('product','categories','ProductUnits','texTypes','barcodeTypes'));
+        $barcodeTypes = BarcodeType::all();
+        return view('product.edit', compact('product', 'categories', 'ProductUnits', 'texTypes', 'barcodeTypes'));
     }
 
     /**
@@ -143,8 +144,8 @@ class ProductController extends BaseController
         // Validate Data
         $validated = $request->validate([
 
-            'code'              => ['required', 'unique:products,code,'.$product->id],
-            'barcode'           => ['nullable', 'unique:products,barcode,'.$product->id],
+            'code'              => ['required', 'unique:products,code,' . $product->id],
+            'barcode'           => ['nullable', 'unique:products,barcode,' . $product->id],
             'barcode_type'      => ['nullable'],
             'name'              => ['required'],
             'description'       => ['required'],
@@ -158,7 +159,7 @@ class ProductController extends BaseController
             'purchase_unit'     => ['required'],
             'sell_unit'         => ['required'],
             'category'          => ['required']
-        ],[
+        ], [
             'name.required'     => 'The product name field is required',
             'code.required'     => 'The product code field is required',
         ]);
@@ -181,7 +182,7 @@ class ProductController extends BaseController
             'sell_unit_id'      =>  $validated['sell_unit'] ?? $product->sell_unit_id,
             'category_id'       =>  $validated['category'] ?? $product->category_id
         ];
-      
+
         try {
             $product->update($productUpdatedData);
             return Redirect::route('product.index')->with($this->sendWithSuccess('Product Update Success'));
@@ -209,5 +210,14 @@ class ProductController extends BaseController
         } catch (\Exception $e) {
             return Redirect::back()->with($this->sendWithError($e->getMessage()));
         }
+    }
+
+    /***
+     * Export Product in excle
+     */
+
+    public function exportXlsx()
+    {
+        return Excel::download(new ProductsExport, 'product_list.xlsx');
     }
 }

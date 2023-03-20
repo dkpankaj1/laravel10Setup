@@ -93,7 +93,7 @@ Breadcrumbs::for('profile', function ($trail) {
 // :: End User Profile ::
 
 
-// ::Begin Currency ::
+// ::Begin Supplier ::
 Breadcrumbs::for('supplier', function ($trail) {
     $trail->push('Supplier', route('supplier.index'));
 });
@@ -106,7 +106,7 @@ Breadcrumbs::for('supplier.edit', function ($trail, $currency) {
     $trail->push($currency->name);
     $trail->push('Edit', route('supplier.edit', $currency));
 });
-// :: End Currency ::
+// :: End Supplier ::
 
 
 // Begin System Setting ::
@@ -129,6 +129,22 @@ Breadcrumbs::for('units.edit', function ($trail, $productUnit) {
     $trail->push('Edit', route('units.edit', $productUnit));
 });
 // :: End Unit ::
+
+// ::Begin Users ::
+Breadcrumbs::for('users', function ($trail) {
+    $trail->push('User', route('users.index'));
+});
+Breadcrumbs::for('users.create', function ($trail) {
+    $trail->parent('users');
+    $trail->push('Create', route('users.create'));
+});
+Breadcrumbs::for('users.edit', function ($trail, $user) {
+    $trail->parent('users');
+    $trail->push($user->name);
+    $trail->push('Edit', route('users.edit', $user));
+});
+// :: End Supplier ::
+
 
 // :: Begin Unit ::
 Breadcrumbs::for('warehouse.index', function ($trail) {

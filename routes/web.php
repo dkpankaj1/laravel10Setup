@@ -12,6 +12,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RolesAndPermissionsController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\SystemSettingController;
+use App\Http\Controllers\UsersController;
 use App\Http\Controllers\WarehouseController;
 use Illuminate\Support\Facades\Route;
 
@@ -61,9 +62,10 @@ Route::group(['middleware' => ['auth']], function () {
     // :: End set-appSession 
 
     //  :: Begin product 
-    Route::resource('product', ProductController::class)->only(['index', 'create', 'store','edit','update']);
+    Route::resource('product', ProductController::class)->only(['index', 'create', 'store', 'edit', 'update']);
     Route::get('product/{product}/delete', [ProductController::class, 'delete'])->name('product.delete');
     Route::delete('product/{product}/delete', [ProductController::class, 'destroy'])->name('product.destroy');
+    Route::get('export/xlsx/product', [ProductController::class, 'exportXlsx'])->name('product.export.excle');
     //  :: End  product 
 
     //  :: Begin product unit 
@@ -104,6 +106,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('setting/{systemSetting:name}/manage', [SystemSettingController::class, 'show'])->name('setting.system.manage');
     Route::put('setting/{systemSetting:name}/manage', [SystemSettingController::class, 'update'])->name('setting.system.manage');
     // :: End system settion 
+
+    //  :: Begin users 
+    Route::resource('users', UsersController::class,)->only(['index', 'create', 'store', 'edit', 'update']);
+    Route::get('users/{user}/delete', [UsersController::class, 'delete'])->name('users.delete');
+    Route::delete('users/{user}/delete', [UsersController::class, 'destroy'])->name('users.destroy');
+    //  :: End users 
 
     //  :: Begin warehouse 
     Route::resource('warehouse', WarehouseController::class)->only(['index', 'create', 'store', 'edit', 'update']);

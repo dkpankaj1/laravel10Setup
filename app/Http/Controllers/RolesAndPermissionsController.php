@@ -13,7 +13,8 @@ class RolesAndPermissionsController extends BaseController
     // List Roles
     public function listRole(): View
     {
-        $roleList = Role::all();
+        // $roleList = Role::all();
+        $roleList = Role::withCount('users')->get();
         return view('roles.list', ['roles' => $roleList]);
     }
 

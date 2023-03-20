@@ -1,21 +1,22 @@
 <x-app-layout>
+
     <x-slot name="header">
+
         <x-page-header-with-btn>
 
-            <x-slot name="title">Group Permissions</x-slot>
+            <x-slot name="title">User Management</x-slot>
 
             <x-slot name="breadcrumbs">
-                {{Breadcrumbs::render('roles')}}
+                {{Breadcrumbs::render('users')}}
             </x-slot>
 
-            <a class="btn btn-added" href="{{route('roles.create')}}"><img src="assets/img/icons/plus.svg" alt="img"
-                    class="me-1" />Add Group Permission</a>
+            <a class="btn btn-added" href="{{route('users.create')}}"><img src="assets/img/icons/plus.svg" alt="img"
+                    class="me-1" />Add New User</a>
         </x-page-header-with-btn>
+
     </x-slot>
 
     {{-- :: Begin Section :: --}}
-
-
 
     <div class="card">
         <div class="card-body">
@@ -47,34 +48,33 @@
                     <thead>
                         <tr>
                             <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
                             <th>Role</th>
-                            <th>Users</th>
-                            <th>Description</th>
+                            <th>Login Enable</th>
                             <th class="text-end">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($roles as $role)
-
+                        @foreach($users as $user)
                         <tr>
-                            <td>RP#{{$role->id}}</td>
-                            <td>{{$role->name}}</td>
-                            <td>{{$role->users_count}}</td>
-                            <td>{{$role->description}}</td>
+                            <td>USR#{{$user->id}}</td>
+                            <td>{{$user->name}}</td>
+                            <td>{{$user->email}}</td>
+                            <td>{{$user->role}}</td>
+                            <td>{{$user->login_enable ? "Enable" : "Disable"}}</td>
                             <td class="text-end">
-                                @if(!in_array($role->name,['super admin']))
-                                <a class="me-3 " href="{{route('roles.edit',$role)}}">
-                                    <img src="{{asset('assets/img/icons/edit.svg')}}" alt="img" />
+                                <a class="me-3" href="{{route('users.edit',$user)}}">
+                                    <img src="assets/img/icons/edit.svg" alt="img" />
                                 </a>
-                                <a class="me-3 d3l3t3btn" data-attr="{{route('roles.delete',$role)}}">
+                                @if($user->role != 'super admin')
+                                <a class="me-3 d3l3t3btn" data-attr="{{route('users.delete',$user)}}">
                                     <img src="assets/img/icons/delete.svg" alt="img" />
                                 </a>
                                 @endif
                             </td>
                         </tr>
-
                         @endforeach
-
                     </tbody>
                 </table>
             </div>
