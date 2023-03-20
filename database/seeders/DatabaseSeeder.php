@@ -4,7 +4,11 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\BarcodeType;
+use App\Models\Category;
+use App\Models\Product;
 use App\Models\ProductUnit;
+use App\Models\TexType;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
@@ -16,6 +20,37 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // 
+
+        Category::create(['name' => 'uncategorie', 'description' => "test"]);
+        Category::create(['name' => 'uncategorie-1', 'description' => "test"]);
+        Category::create(['name' => 'uncategorie-2', 'description' => "test"]);
+
+        // 
+
+
+        /**
+         * ---------------------------
+         * Begin Master Table Seeder
+         * --------------------------
+         */
+        
+        $this->call(ApplicationSessionSeeder::class);
+        $this->call(BarcodeTypeSeeder::class);
+        $this->call(CurrencySeeder::class);
+        $this->call(OrderStatusSeeder::class);
+        $this->call(PaymentStatusSeeder::class);
+        $this->call(PaymentModeSeeder::class);
+        $this->call(ProductUnitSeeder::class);
+        $this->call(TexTypeSeeder::class);
+
+        /**
+         * ---------------------------
+         * End Master Table Seeder
+         * --------------------------
+         */
+
+
         // seed role and permission
         $this->call(RolePermissionSeeder::class);
         // ------------------------
@@ -25,32 +60,12 @@ class DatabaseSeeder extends Seeder
         $user->assignRole('super admin');
         // ------------------------
 
-        // seed application session
-        $this->call(ApplicationSessionSeeder::class);
-        // ------------------------
-
-        // seed currency 
-        $this->call(CurrencySeeder::class);
-        // ------------------------
-
-        // seed order status 
-        $this->call(OrderStatusSeeder::class);
-        // ------------------------
-
-        // seed payment status  
-        $this->call(PaymentStatusSeeder::class);
-        // ------------------------
-
-        // seed payment mode 
-        $this->call(PaymentModeSeeder::class);
-        // ------------------------
-
-        // seed payment mode 
-        $this->call(ProductUnitSeeder::class);
-        // ------------------------
-
         // seed system settion 
         $this->call(SystemSettionSeeder::class);
         // ------------------------
+
+
+
+        Product::factory(100)->create();
     }
 }

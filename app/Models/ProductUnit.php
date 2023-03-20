@@ -14,4 +14,8 @@ class ProductUnit extends Model
     public function baseUnit(){
         return $this->belongsTo(ProductUnit::class,'base_unit','id');
     }
+
+    public function products(){
+        return $this->hasMany(Product::class);
+    }
 }

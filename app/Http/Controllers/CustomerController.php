@@ -17,7 +17,7 @@ class CustomerController extends BaseController
      */
     public function index():View
     {
-        $customers = Customer::where('session_id',$this->getAppSessionId())->get();
+        $customers = $this->getAllRecord(new Customer());
         return view('customer.list', compact('customers'));
     }
 

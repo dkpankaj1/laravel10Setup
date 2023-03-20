@@ -2,7 +2,8 @@
 
 namespace App\Utils;
 
-class helpers{
+class helpers
+{
 
     //  Helper Multiple Filter
     public function filter($model, $columns, $param, $request)
@@ -17,19 +18,19 @@ class helpers{
 
         foreach ($fields as $field) {
             $model->where(function ($query) use ($request, $field, $model) {
-                return $model->when($request->filled($field['value']),
+                return $model->when(
+                    $request->filled($field['value']),
                     function ($query) use ($request, $model, $field) {
                         $field['param'] = 'like' ?
-                        $model->where($field['value'], 'like', "{$request[$field['value']]}")
-                        : $model->where($field['value'], $request[$field['value']]);
-                    });
+                            $model->where($field['value'], 'like', "{$request[$field['value']]}")
+                            : $model->where($field['value'], $request[$field['value']]);
+                    }
+                );
             });
         }
 
         // Finally return the model
         return $model;
     }
-    
-
 
 }

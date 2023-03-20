@@ -54,6 +54,23 @@ Breadcrumbs::for('dashboard', function ($trail) {
 });
 // :: End Dashboard ::
 
+
+// ::Begin Customer ::
+Breadcrumbs::for('product', function ($trail) {
+    $trail->push('Product', route('product.index'));
+});
+Breadcrumbs::for('product.create', function ($trail) {
+    $trail->parent('product');
+    $trail->push('Create', route('product.create'));
+});
+Breadcrumbs::for('product.edit', function ($trail, $product) {
+    $trail->parent('product');
+    $trail->push($product->name);
+    $trail->push('Edit', route('product.edit', $product));
+});
+// :: End Customer ::
+
+
 // :: Begin Role And Permission ::
 Breadcrumbs::for('roles', function ($trail) {
     $trail->push('Roles', route('roles.index'));

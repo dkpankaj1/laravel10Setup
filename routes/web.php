@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductUnitController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RolesAndPermissionsController;
@@ -58,6 +59,12 @@ Route::group(['middleware' => ['auth']], function () {
     // :: Begin set-appSession 
     Route::get('/session/{appSession}', [BaseController::class, 'setAppSession'])->name('app.session.set');
     // :: End set-appSession 
+
+    //  :: Begin product 
+    Route::resource('product', ProductController::class)->only(['index', 'create', 'store','edit','update']);
+    Route::get('product/{product}/delete', [ProductController::class, 'delete'])->name('product.delete');
+    Route::delete('product/{product}/delete', [ProductController::class, 'destroy'])->name('product.destroy');
+    //  :: End  product 
 
     //  :: Begin product unit 
     Route::resource('units', ProductUnitController::class)->only(['index', 'create', 'store']);
