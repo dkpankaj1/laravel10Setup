@@ -192,6 +192,12 @@
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </li>
+                                            <li>
+                                                <label class="inputcheck">Import
+                                                    <input type="checkbox" name="permission[]" value="product.import" />
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </li>
                                         </ul>
                                     </div>
                                 </li>

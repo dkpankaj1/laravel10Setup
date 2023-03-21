@@ -577,7 +577,8 @@ $(document).ready(function () {
 $(document).ready(function () {
     $("#sidebar-menu a").each(function () {
         var e = window.location.href.split(/[?#]/)[0];
-        if (String(e).includes($(this).attr("href"))) {
+        // if (String(e).includes($(this).attr("href"))) {
+        if (String(e) === String($(this).attr("href"))) {
             $(this).addClass("active");
             if ($(this).parent().parent().parent().hasClass("submenu")) {
                 $(this).parent().parent().siblings().addClass("active subdrop");

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Exports\ProductsExport;
+use App\Exports\ProductSampleExport;
+use App\Imports\ProductImport;
 use App\Models\BarcodeType;
 use App\Models\Category;
 use App\Models\Product;
@@ -67,7 +69,7 @@ class ProductController extends BaseController
      */
     public function store(Request $request): RedirectResponse
     {
-         $this->checkAuthorizetion('product.create');
+        $this->checkAuthorizetion('product.create');
         // Validate Data
         $validated = $request->validate([
 
@@ -132,7 +134,7 @@ class ProductController extends BaseController
      */
     public function edit(Product $product): View
     {
-         $this->checkAuthorizetion('product.edit');
+        $this->checkAuthorizetion('product.edit');
         $categories = Category::all();
         $ProductUnits = ProductUnit::all();
         $texTypes = TexType::all();
@@ -145,7 +147,7 @@ class ProductController extends BaseController
      */
     public function update(Request $request, Product $product): RedirectResponse
     {
-         $this->checkAuthorizetion('product.edit');
+        $this->checkAuthorizetion('product.edit');
         // Validate Data
         $validated = $request->validate([
 
@@ -201,7 +203,7 @@ class ProductController extends BaseController
      */
     public function delete(Product $product): View
     {
-         $this->checkAuthorizetion('product.delete');
+        $this->checkAuthorizetion('product.delete');
         return view('product.delete', compact('product'));
     }
 
@@ -219,12 +221,44 @@ class ProductController extends BaseController
         }
     }
 
+     /***
+     * Export Product in excle
+     */
+    public function downloadSample()
+    {
+        return Excel::download(new ProductSampleExport, 'product_list_sample.xlsx');
+    }
+
     /***
      * Export Product in excle
      */
-
-    public function exportXlsx()
+    public function exportExcle()
     {
         return Excel::download(new ProductsExport, 'product_list.xlsx');
+    }
+
+    /***
+     * Import Product in excle
+     */
+    public function productImport():View
+    {
+        $this->checkAuthorizetion('product.import');
+        return view('product.import');
+    }
+    
+    /***
+     * Import Product in excle
+     */
+    public function importExcle(Request $request):RedirectResponse
+    {
+        $this->checkAuthorizetion('product.import');
+        $request->validate(['file' => 'required|max:50000|mimes:xlsx,xls']);
+
+        try {
+            Excel::import(new ProductImport, $request->file);
+            return Redirect::back()->with($this->sendWithSuccess('Product Imported Successfully.'));
+        } catch (\Exception $e) {
+            return Redirect::back()->with($this->sendWithError($e->getMessage()));
+        }
     }
 }

@@ -211,6 +211,13 @@
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </li>
+                                            <li>
+                                                <label class="inputcheck">Import
+                                                    <input type="checkbox" name="permission[]" value="product.import" 
+                                                    {{in_array("product.import",$hasPermission) ? "checked" :"" }}/>
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </li>
                                         </ul>
                                     </div>
                                 </li>

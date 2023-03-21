@@ -65,7 +65,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('product', ProductController::class)->only(['index', 'create', 'store', 'edit', 'update']);
     Route::get('product/{product}/delete', [ProductController::class, 'delete'])->name('product.delete');
     Route::delete('product/{product}/delete', [ProductController::class, 'destroy'])->name('product.destroy');
-    Route::get('export/xlsx/product', [ProductController::class, 'exportXlsx'])->name('product.export.excle');
+    Route::get('product/export/excle', [ProductController::class, 'exportExcle'])->name('product.export.excle');
+    Route::get('product/import', [ProductController::class, 'productImport'])->name('product.import');
+    Route::post('product/import', [ProductController::class, 'importExcle'])->name('product.import');
+    Route::get('product/download/sample', [ProductController::class, 'downloadSample'])->name('product.download.sample');
     //  :: End  product 
 
     //  :: Begin product unit 

@@ -68,6 +68,10 @@ Breadcrumbs::for('product.edit', function ($trail, $product) {
     $trail->push($product->name);
     $trail->push('Edit', route('product.edit', $product));
 });
+Breadcrumbs::for('product.import', function ($trail) {
+    $trail->parent('product');
+    $trail->push('Import', route('product.import'));
+});
 // :: End Customer ::
 
 

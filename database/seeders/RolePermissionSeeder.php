@@ -46,6 +46,7 @@ class RolePermissionSeeder extends Seeder
         Permission::create(['name' => 'product.create']);
         Permission::create(['name' => 'product.edit']);
         Permission::create(['name' => 'product.delete']);
+        Permission::create(['name' => 'product.import']);
         # :: End permission for product :: #
 
         # :: Begin permission for Role :: #
