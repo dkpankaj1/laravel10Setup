@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('code')->unique();
             $table->string('name');
             $table->string('barcode')->unique();
-            $table->unsignedBigInteger('barcode_type_id')->nullable();
+            $table->unsignedBigInteger('barcode_type_id');
             $table->text('description');
             $table->double('cost');
             $table->double('price');

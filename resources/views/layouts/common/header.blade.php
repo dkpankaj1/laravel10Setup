@@ -24,7 +24,7 @@
         <li class="nav-item dropdown has-arrow flag-nav">
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="javascript:void(0);" role="button">
                 @if(Session::has('appSession'))
-                <i class="fa fa-barcode"></i>&nbsp;<spanstyle="font-weight:bold">{{Session::get('appSession')['name']}}</spanstyle=>
+                <i class="fa fa-calendar"></i>&nbsp;<spanstyle="font-weight:bold">{{Session::get('appSession')['name']}}</spanstyle=>
                 @else
                 <span class="text-danger">{{_('No Session')}}</span>                
                 @endif

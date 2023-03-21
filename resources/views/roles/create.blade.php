@@ -198,6 +198,12 @@
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </li>
+                                            <li>
+                                                <label class="inputcheck">Barcode Generate
+                                                    <input type="checkbox" name="permission[]" value="product.barcode.generate" />
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </li>
                                         </ul>
                                     </div>
                                 </li>

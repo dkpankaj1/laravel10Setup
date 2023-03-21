@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(ApplicationSessionSeeder::class);
         $this->call(BarcodeTypeSeeder::class);
+        $this->call(BarcodePaperSizeSeeder::class);
         $this->call(CurrencySeeder::class);
         $this->call(OrderStatusSeeder::class);
         $this->call(PaymentStatusSeeder::class);
@@ -62,7 +63,10 @@ class DatabaseSeeder extends Seeder
         // ------------------------
 
 
+        // seed product 
+        $this->call(ProductSeeder::class);
+        // ------------------------
 
-        // Product::factory(100)->create();
+        
     }
 }

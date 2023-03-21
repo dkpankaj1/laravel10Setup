@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Exports\ProductsExport;
 use App\Exports\ProductSampleExport;
 use App\Imports\ProductImport;
+use App\Models\BarcodePaperSize;
 use App\Models\BarcodeType;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductUnit;
 use App\Models\SystemSetting;
 use App\Models\TexType;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -74,8 +76,8 @@ class ProductController extends BaseController
         $validated = $request->validate([
 
             'code'              => ['required', 'unique:products,code'],
-            'barcode'           => ['nullable', 'unique:products,barcode'],
-            'barcode_type'      => ['nullable'],
+            'barcode'           => ['required', 'unique:products,barcode'],
+            'barcode_type'      => ['required'],
             'name'              => ['required'],
             'description'       => ['required'],
             'cost'              => ['required'],
@@ -152,8 +154,8 @@ class ProductController extends BaseController
         $validated = $request->validate([
 
             'code'              => ['required', 'unique:products,code,' . $product->id],
-            'barcode'           => ['nullable', 'unique:products,barcode,' . $product->id],
-            'barcode_type'      => ['nullable'],
+            'barcode'           => ['required', 'unique:products,barcode,' . $product->id],
+            'barcode_type'      => ['required'],
             'name'              => ['required'],
             'description'       => ['required'],
             'cost'              => ['required'],
@@ -221,7 +223,7 @@ class ProductController extends BaseController
         }
     }
 
-     /***
+    /***
      * Export Product in excle
      */
     public function downloadSample()
@@ -240,16 +242,16 @@ class ProductController extends BaseController
     /***
      * Import Product in excle
      */
-    public function productImport():View
+    public function productImport(): View
     {
         $this->checkAuthorizetion('product.import');
         return view('product.import');
     }
-    
+
     /***
      * Import Product in excle
      */
-    public function importExcle(Request $request):RedirectResponse
+    public function importExcle(Request $request): RedirectResponse
     {
         $this->checkAuthorizetion('product.import');
         $request->validate(['file' => 'required|max:50000|mimes:xlsx,xls']);
@@ -260,5 +262,15 @@ class ProductController extends BaseController
         } catch (\Exception $e) {
             return Redirect::back()->with($this->sendWithError($e->getMessage()));
         }
+    }
+
+
+    /***
+     * Generate Product barcode
+     */
+    public function barcodeGenerate(Request $request, Product $product)
+    {
+        $this->checkAuthorizetion('product.barcode.generate');
+        return view('product.barcode',compact('product'));
     }
 }

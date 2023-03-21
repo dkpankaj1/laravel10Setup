@@ -28,7 +28,6 @@
                         @can('product.import')
                         <li><a href="{{route('product.import')}}">Import Products</a></li>
                         @endcan
-                        <li><a href="#">Print Barcode</a></li>
                     </ul>
                 </li>
                 @endcanany

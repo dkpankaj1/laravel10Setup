@@ -80,14 +80,20 @@
                             <td>{{$product->category}}</td>
                             <td class="text-end">
                                 @can('product.edit')
-                                <a class="me-3" href="{{route('product.edit',$product)}}">
-                                    <img src="assets/img/icons/edit.svg" alt="img" />
+                                <a class="me-3" href="{{route('product.edit',$product)}}" title="Edit">
+                                    <img src="{{asset('assets/img/icons/edit.svg')}}" alt="img" />
+                                </a>
+                                @endcan
+
+                                @can('product.barcode.generate')
+                                <a class="me-3" href="{{route('product.barcode.generate',$product)}}" title="Barcode">
+                                    <img src="{{asset('assets/img/icons/upcscan.svg')}}" alt="img" />
                                 </a>
                                 @endcan
 
                                 @can('product.delete')
-                                <a class="me-3 d3l3t3btn" data-attr="{{route('product.delete',$product)}}">
-                                    <img src="assets/img/icons/delete.svg" alt="img" />
+                                <a class="me-3 d3l3t3btn" data-attr="{{route('product.delete',$product)}}" title="Delete">
+                                    <img src="{{asset('assets/img/icons/delete.svg')}}" alt="img" />
                                 </a>
                                 @endcan
                             </td>

@@ -4,9 +4,9 @@ namespace App\Imports;
 
 use App\Models\Product;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
-use Maatwebsite\Excel\Concerns\Importable;
 
 class ProductImport implements ToModel,WithHeadingRow,WithValidation
 {

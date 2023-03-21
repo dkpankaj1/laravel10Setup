@@ -36,7 +36,7 @@ class ProductSampleExport implements FromCollection
         $record = new Product();
         $record->code           = "ENGLISH-2023-LKG";
         $record->name           = "ENGLISH BOOK";
-        $record->barcode        = "123456124587";
+        $record->barcode        = "12345678910";
         $record->barcode_type   = "1";
         $record->description    = "test description";
         $record->cost           = "250";

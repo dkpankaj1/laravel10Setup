@@ -20,7 +20,7 @@
                     <div class="col-lg-3 col-sm-6 col-12">
                         <div class="form-group">
                             <label>Product Name</label>
-                            <input type="text" name="name" placeholder="Ente Product name" value="{{old('name')}}" />
+                            <input type="text" name="name" placeholder="Ente Product name" value="{{old('name')}}" autofocus />
                             @error('name')
                             <div class="invalid-feedback d-block">{{$message}}</div>
                             @enderror
@@ -44,7 +44,7 @@
                     <div class="col-lg-3 col-sm-6 col-12">
                         <div class="form-group">
                             <label>BarCode</label>
-                            <input type="text" name="barcode" placeholder="Product Barcode"
+                            <input type="text" name="barcode" placeholder="Product Barcode" class="preventHitEnter"
                                 value="{{old('barcode')}}" />
                             @error('barcode')
                             <div class="invalid-feedback d-block">{{$message}}</div>
@@ -265,7 +265,7 @@
 
     {{-- :: End Section :: --}}
 
-    @section('page-script')
+    @section('page_script')
     <script>
         $('.preventHitEnter').keypress(function (event) {
             if (event.keyCode === 10 || event.keyCode === 13) {

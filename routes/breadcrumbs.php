@@ -72,6 +72,11 @@ Breadcrumbs::for('product.import', function ($trail) {
     $trail->parent('product');
     $trail->push('Import', route('product.import'));
 });
+Breadcrumbs::for('product.barcode.generate', function ($trail,$product) {
+    $trail->parent('product');
+    $trail->push($product->name);
+    $trail->push('Barcode', route('product.barcode.generate',$product));
+});
 // :: End Customer ::
 
 
