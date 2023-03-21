@@ -17,6 +17,8 @@ class SupplierController extends BaseController
      */
     public function index()
     {
+        $this->checkAuthorizetion('supplier.show');
+
         $suppliers = $this->getAllRecord(new Supplier());
         return view('supplier.list', compact('suppliers'));
     }
@@ -26,14 +28,17 @@ class SupplierController extends BaseController
      */
     public function create()
     {
+        $this->checkAuthorizetion('supplier.create');
         return view('supplier.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request):RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
+        $this->checkAuthorizetion('supplier.create');
+
         $validated = $request->validate([
             'name'          => ["required"],
             'phone'         => ["required"],
@@ -72,6 +77,8 @@ class SupplierController extends BaseController
      */
     public function edit(Supplier $supplier)
     {
+        $this->checkAuthorizetion('supplier.edit');
+
         return view('supplier.edit', compact('supplier'));
     }
 
@@ -80,6 +87,8 @@ class SupplierController extends BaseController
      */
     public function update(Request $request, Supplier $supplier)
     {
+        $this->checkAuthorizetion('supplier.edit');
+
         $validated = $request->validate([
             'name'      => ["required"],
             'phone'     => ["required"],
@@ -109,6 +118,8 @@ class SupplierController extends BaseController
      */
     public function delete(Supplier $supplier): View
     {
+        $this->checkAuthorizetion('supplier.delete');
+
         return view('supplier.delete', compact('supplier'));
     }
 
@@ -117,6 +128,8 @@ class SupplierController extends BaseController
      */
     public function destroy(Supplier $supplier)
     {
+        $this->checkAuthorizetion('supplier.delete');
+
         try {
             $supplier->delete();
             return Redirect::back()->with($this->sendWithSuccess('Supplier Delete Success.'));

@@ -21,20 +21,17 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // 
-
         Category::create(['name' => 'uncategorie', 'description' => "test"]);
         Category::create(['name' => 'uncategorie-1', 'description' => "test"]);
         Category::create(['name' => 'uncategorie-2', 'description' => "test"]);
-
         // 
-
 
         /**
          * ---------------------------
          * Begin Master Table Seeder
          * --------------------------
          */
-        
+
         $this->call(ApplicationSessionSeeder::class);
         $this->call(BarcodeTypeSeeder::class);
         $this->call(CurrencySeeder::class);
@@ -56,7 +53,7 @@ class DatabaseSeeder extends Seeder
         // ------------------------
 
         // seed super user
-        $user = \App\Models\User::create(['name' => "Dipankar", 'email' => "dipankar@email.com", 'email_verified_at' => now(), 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'remember_token' => Str::random(10)]);
+        $user = \App\Models\User::create(['name' => "Dipankar", 'email' => "dipankar@email.com", 'email_verified_at' => now(), 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'login_enable' => 1, 'remember_token' => Str::random(10)]);
         $user->assignRole('super admin');
         // ------------------------
 

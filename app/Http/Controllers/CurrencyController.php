@@ -14,7 +14,9 @@ class CurrencyController extends BaseController
      * Display a listing of the resource.
      */
     public function index(): View
-    { 
+    {
+        $this->checkAuthorizetion('currency.show');
+
         $curencys = Currency::all();
         return view('currency.list', compact('curencys'));
     }
@@ -24,6 +26,8 @@ class CurrencyController extends BaseController
      */
     public function create(): View
     {
+        $this->checkAuthorizetion('currency.create');
+
         return view('currency.create');
     }
 
@@ -32,6 +36,8 @@ class CurrencyController extends BaseController
      */
     public function store(Request $request): RedirectResponse
     {
+        $this->checkAuthorizetion('currency.create');
+
 
         $validated = $request->validate([
             'name'          => ["required", "unique:currencies,name"],
@@ -68,6 +74,8 @@ class CurrencyController extends BaseController
      */
     public function edit(Currency $currency): View
     {
+        $this->checkAuthorizetion('currency.edit');
+
         return view('currency.edit', compact('currency'));
     }
 
@@ -76,6 +84,8 @@ class CurrencyController extends BaseController
      */
     public function update(Request $request, Currency $currency): RedirectResponse
     {
+        $this->checkAuthorizetion('currency.edit');
+
         $validated = $request->validate([
             'name'          => ["required", "unique:currencies,name," . $currency->id],
             'code'          => ["required", "unique:currencies,code," . $currency->id],
@@ -103,6 +113,8 @@ class CurrencyController extends BaseController
      */
     public function delete(Currency $currency): View
     {
+        $this->checkAuthorizetion('currency.delete');
+
         return view('currency.delete', compact('currency'));
     }
 
@@ -111,6 +123,8 @@ class CurrencyController extends BaseController
      */
     public function destroy(Currency $currency): RedirectResponse
     {
+        $this->checkAuthorizetion('currency.delete');
+
         try {
             $currency->delete();
             return Redirect::back()->with($this->sendWithSuccess('Currency Delete Success.'));

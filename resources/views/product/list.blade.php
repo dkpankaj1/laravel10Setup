@@ -9,9 +9,10 @@
             <x-slot name="breadcrumbs">
                 {{Breadcrumbs::render('product')}}
             </x-slot>
-
+            @can('product.create')
             <a class="btn btn-added" href="{{route('product.create')}}"><img src="assets/img/icons/plus.svg" alt="img"
                     class="me-1" />Add New Currency</a>
+            @endcan
         </x-page-header-with-btn>
 
     </x-slot>
@@ -33,8 +34,8 @@
                                     src="assets/img/icons/pdf.svg" alt="img" /></a>
                         </li>
                         <li>
-                            <a data-bs-toggle="tooltip" href="{{route('product.export.excle')}}" data-bs-placement="top" title="excel"><img
-                                    src="assets/img/icons/excel.svg" alt="img" /></a>
+                            <a data-bs-toggle="tooltip" href="{{route('product.export.excle')}}" data-bs-placement="top"
+                                title="excel"><img src="assets/img/icons/excel.svg" alt="img" /></a>
                         </li>
                         <li>
                             <a data-bs-toggle="tooltip" data-bs-placement="top" title="print"><img
@@ -78,12 +79,17 @@
                             <td>{{$product->sell_unit}}</td>
                             <td>{{$product->category}}</td>
                             <td class="text-end">
+                                @can('product.edit')
                                 <a class="me-3" href="{{route('product.edit',$product)}}">
                                     <img src="assets/img/icons/edit.svg" alt="img" />
                                 </a>
+                                @endcan
+
+                                @can('product.delete')
                                 <a class="me-3 d3l3t3btn" data-attr="{{route('product.delete',$product)}}">
                                     <img src="assets/img/icons/delete.svg" alt="img" />
                                 </a>
+                                @endcan
                             </td>
                         </tr>
                         @endforeach

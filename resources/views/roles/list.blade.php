@@ -7,9 +7,10 @@
             <x-slot name="breadcrumbs">
                 {{Breadcrumbs::render('roles')}}
             </x-slot>
-
+            @can('roles.create')
             <a class="btn btn-added" href="{{route('roles.create')}}"><img src="assets/img/icons/plus.svg" alt="img"
                     class="me-1" />Add Group Permission</a>
+            @endcan
         </x-page-header-with-btn>
     </x-slot>
 
@@ -63,12 +64,17 @@
                             <td>{{$role->description}}</td>
                             <td class="text-end">
                                 @if(!in_array($role->name,['super admin']))
+                                @can('roles.edit')
                                 <a class="me-3 " href="{{route('roles.edit',$role)}}">
                                     <img src="{{asset('assets/img/icons/edit.svg')}}" alt="img" />
                                 </a>
+                                @endcan
+                                
+                                @can('roles.delete')
                                 <a class="me-3 d3l3t3btn" data-attr="{{route('roles.delete',$role)}}">
                                     <img src="assets/img/icons/delete.svg" alt="img" />
                                 </a>
+                                @endcan
                                 @endif
                             </td>
                         </tr>

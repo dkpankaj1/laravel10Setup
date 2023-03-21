@@ -58,6 +58,164 @@
                         <div class="productdetails product-respon">
                             <ul>
 
+                                {{-- permission for category management--}}
+                                <li>
+                                    <h4>Category Management</h4>
+                                    <div class="input-checkset">
+                                        <ul>
+                                            <li>
+                                                <label class="inputcheck">View
+                                                    <input type="checkbox" name="permission[]" value="category.show"
+                                                        {{in_array("currency.show",$hasPermission) ? "checked" :"" }} />
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="inputcheck">Create
+                                                    <input type="checkbox" name="permission[]" value="category.create"
+                                                        {{in_array("category.create",$hasPermission) ? "checked" :""
+                                                        }} />
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="inputcheck">Edit
+                                                    <input type="checkbox" name="permission[]" value="category.edit"
+                                                        {{in_array("category.edit",$hasPermission) ? "checked" :"" }} />
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="inputcheck">Delete
+                                                    <input type="checkbox" name="permission[]" value="category.delete"
+                                                        {{in_array("category.delete",$hasPermission) ? "checked" :""
+                                                        }} />
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                {{-- ------------------------------ --}}
+
+                                {{-- permission for currency management--}}
+                                <li>
+                                    <h4>Currency Management</h4>
+                                    <div class="input-checkset">
+                                        <ul>
+                                            <li>
+                                                <label class="inputcheck">View
+                                                    <input type="checkbox" name="permission[]" value="currency.show"
+                                                        {{in_array("currency.show",$hasPermission) ? "checked" :"" }} />
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="inputcheck">Create
+                                                    <input type="checkbox" name="permission[]" value="currency.create"
+                                                        {{in_array("currency.create",$hasPermission) ? "checked" :""
+                                                        }} />
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="inputcheck">Edit
+                                                    <input type="checkbox" name="permission[]" value="currency.edit"
+                                                        {{in_array("currency.edit",$hasPermission) ? "checked" :"" }} />
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="inputcheck">Delete
+                                                    <input type="checkbox" name="permission[]" value="currency.delete"
+                                                        {{in_array("currency.delete",$hasPermission) ? "checked" :""
+                                                        }} />
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                {{-- ------------------------------ --}}
+
+                                {{-- permission for Customer management --}}
+                                <li>
+                                    <h4>Customer Management</h4>
+                                    <div class="input-checkset">
+                                        <ul>
+                                            <li>
+                                                <label class="inputcheck">View
+                                                    <input type="checkbox" name="permission[]" value="customer.show"
+                                                        {{in_array("customer.show",$hasPermission) ? "checked" :"" }} />
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="inputcheck">Create
+                                                    <input type="checkbox" name="permission[]" value="customer.create"
+                                                        {{in_array("customer.create",$hasPermission) ? "checked" :""
+                                                        }} />
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="inputcheck">Edit
+                                                    <input type="checkbox" name="permission[]" value="customer.edit"
+                                                        {{in_array("customer.edit",$hasPermission) ? "checked" :"" }} />
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="inputcheck">Delete
+                                                    <input type="checkbox" name="permission[]" value="customer.delete"
+                                                        {{in_array("customer.delete",$hasPermission) ? "checked" :""
+                                                        }} />
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                {{-- ------------------------------ --}}
+
+                                {{-- permission for Product management --}}
+                                <li>
+                                    <h4>Product Management</h4>
+                                    <div class="input-checkset">
+                                        <ul>
+                                            <li>
+                                                <label class="inputcheck">View
+                                                    <input type="checkbox" name="permission[]" value="product.show" 
+                                                    {{in_array("product.show",$hasPermission) ? "checked" :"" }}/>
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="inputcheck">Create
+                                                    <input type="checkbox" name="permission[]" value="product.create" 
+                                                    {{in_array("product.create",$hasPermission) ? "checked" :"" }}/>
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="inputcheck">Edit
+                                                    <input type="checkbox" name="permission[]" value="product.edit" 
+                                                    {{in_array("product.edit",$hasPermission) ? "checked" :"" }}/>
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="inputcheck">Delete
+                                                    <input type="checkbox" name="permission[]" value="product.delete" 
+                                                    {{in_array("product.delete",$hasPermission) ? "checked" :"" }}/>
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                {{-- ------------------------------ --}}
+
                                 {{-- permission for role management --}}
                                 <li>
                                     <h4>Role Management</h4>
@@ -96,6 +254,113 @@
                                 </li>
                                 {{-- ------------------------------ --}}
 
+                                {{-- permission for system.settion management --}}
+                                <li>
+                                    <h4>System Settion</h4>
+                                    <div class="input-checkset">
+                                        <ul>
+                                            <li>
+                                                <label class="inputcheck">View
+                                                    <input type="checkbox" name="permission[]"
+                                                        value="system.settion.show"
+                                                        {{in_array("system.settion.show",$hasPermission) ? "checked" :""
+                                                        }} />
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="inputcheck">Edit
+                                                    <input type="checkbox" name="permission[]"
+                                                        value="system.settion.edit"
+                                                        {{in_array("system.settion.edit",$hasPermission) ? "checked" :""
+                                                        }} />
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                {{-- ------------------------------ --}}
+
+                                {{-- permission for supplier management --}}
+                                <li>
+                                    <h4>Supplier Management</h4>
+                                    <div class="input-checkset">
+                                        <ul>
+                                            <li>
+                                                <label class="inputcheck">View
+                                                    <input type="checkbox" name="permission[]" value="supplier.show"
+                                                        {{in_array("supplier.show",$hasPermission) ? "checked" :"" }} />
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="inputcheck">Create
+                                                    <input type="checkbox" name="permission[]" value="supplier.create"
+                                                        {{in_array("supplier.create",$hasPermission) ? "checked" :""
+                                                        }} />
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="inputcheck">Edit
+                                                    <input type="checkbox" name="permission[]" value="supplier.edit"
+                                                        {{in_array("supplier.edit",$hasPermission) ? "checked" :"" }} />
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="inputcheck">Delete
+                                                    <input type="checkbox" name="permission[]" value="supplier.delete"
+                                                        {{in_array("supplier.delete",$hasPermission) ? "checked" :""
+                                                        }} />
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                {{-- ------------------------------ --}}
+
+                                {{-- permission for unit management --}}
+                                <li>
+                                    <h4>Units Management</h4>
+                                    <div class="input-checkset">
+                                        <ul>
+                                            <li>
+                                                <label class="inputcheck">View
+                                                    <input type="checkbox" name="permission[]" value="unit.show"
+                                                        {{in_array("unit.show",$hasPermission) ? "checked" :"" }} />
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="inputcheck">Create
+                                                    <input type="checkbox" name="permission[]" value="unit.create"
+                                                        {{in_array("unit.create",$hasPermission) ? "checked" :"" }} />
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="inputcheck">Edit
+                                                    <input type="checkbox" name="permission[]" value="unit.edit"
+                                                        {{in_array("unit.edit",$hasPermission) ? "checked" :"" }} />
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="inputcheck">Delete
+                                                    <input type="checkbox" name="permission[]" value="unit.delete"
+                                                        {{in_array("unit.delete",$hasPermission) ? "checked" :"" }} />
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                {{-- ------------------------------ --}}
+
+
                                 {{-- permission for user management --}}
                                 <li>
                                     <h4>Users Management</h4>
@@ -130,9 +395,54 @@
                                                 </label>
                                             </li>
                                             <li>
-                                                <label class="inputcheck">View all records of all users
-                                                    <input type="checkbox" name="permission[]" value="users.show.all" 
-                                                        {{in_array("users.show.all",$hasPermission) ? "checked" :""  }} />
+                                                <label class="inputcheck">View all
+                                                    records of all
+                                                    users
+                                                    <input type="checkbox" name="permission[]" value="users.show.all"
+                                                        {{in_array("users.show.all",$hasPermission) ? "checked" :""
+                                                        }} />
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                {{-- ------------------------------ --}}
+
+                                {{-- permission for warehouse management --}}
+                                <li>
+                                    <h4>Warehouse Management</h4>
+                                    <div class="input-checkset">
+                                        <ul>
+                                            <li>
+                                                <label class="inputcheck">View
+                                                    <input type="checkbox" name="permission[]" value="warehouse.show"
+                                                        {{in_array("warehouse.show",$hasPermission) ? "checked" :""
+                                                        }} />
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="inputcheck">Create
+                                                    <input type="checkbox" name="permission[]" value="warehouse.create"
+                                                        {{in_array("warehouse.create",$hasPermission) ? "checked" :""
+                                                        }} />
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="inputcheck">Edit
+                                                    <input type="checkbox" name="permission[]" value="warehouse.edit"
+                                                        {{in_array("warehouse.edit",$hasPermission) ? "checked" :""
+                                                        }} />
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="inputcheck">Delete
+                                                    <input type="checkbox" name="permission[]" value="warehouse.delete"
+                                                        {{in_array("warehouse.delete",$hasPermission) ? "checked" :""
+                                                        }} />
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </li>

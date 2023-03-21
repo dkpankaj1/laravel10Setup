@@ -9,9 +9,10 @@
             <x-slot name="breadcrumbs">
                 {{Breadcrumbs::render('warehouse.index')}}
             </x-slot>
-
+            @can('warehouse.create')
             <a class="btn btn-added" href="{{route('warehouse.create')}}"><img src="assets/img/icons/plus.svg" alt="img"
                     class="me-1" />Add New Warehouse</a>
+            @endcan
         </x-page-header-with-btn>
 
     </x-slot>
@@ -66,12 +67,16 @@
                             <td>{{$warehouse->address}}</td>
                             <td>{{$warehouse->description}}</td>
                             <td class="text-end">
+                                @can('warehouse.edit')
                                 <a class="me-3" href="{{route('warehouse.edit',$warehouse)}}">
                                     <img src="assets/img/icons/edit.svg" alt="img" />
                                 </a>
+                                @endcan
+                                @can('warehouse.delete')
                                 <a class="me-3 d3l3t3btn" data-attr="{{route('warehouse.delete',$warehouse)}}">
                                     <img src="assets/img/icons/delete.svg" alt="img" />
                                 </a>
+                                @endcan
                             </td>
                         </tr>
                         @endforeach

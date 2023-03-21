@@ -17,6 +17,7 @@ class ProductUnitController extends BaseController
      */
     public function index(): View
     {
+        $this->checkAuthorizetion('unit.show');
         $units = ProductUnit::all();
         return view('units.list', compact('units'));
     }
@@ -26,6 +27,7 @@ class ProductUnitController extends BaseController
      */
     public function create(): View
     {
+        $this->checkAuthorizetion('unit.create');
         $units = ProductUnit::all();
         $operatorList = $this->operatorList;
         return view('units.create', compact('units', 'operatorList'));
@@ -36,6 +38,7 @@ class ProductUnitController extends BaseController
      */
     public function store(Request $request): RedirectResponse
     {
+         $this->checkAuthorizetion('unit.create');
         $request->validate([
             'name'          => ['required', 'unique:product_units,name'],
             'short_name'    => ["required", 'unique:product_units,short_name'],
@@ -74,6 +77,7 @@ class ProductUnitController extends BaseController
      */
     public function edit(ProductUnit $productUnit): View
     {
+         $this->checkAuthorizetion('unit.edit');
         $units = ProductUnit::all();
         $operatorList = $this->operatorList;
         return view('units.edit', compact('productUnit', 'units', 'operatorList'));
@@ -84,6 +88,7 @@ class ProductUnitController extends BaseController
      */
     public function update(Request $request, ProductUnit $productUnit): RedirectResponse
     {
+         $this->checkAuthorizetion('unit.edit');
         $request->validate([
             'name'          => ['required', "unique:product_units,name," . $productUnit->id],
             'short_name'    => ["required", "unique:product_units,short_name," . $productUnit->id],
@@ -113,6 +118,7 @@ class ProductUnitController extends BaseController
      */
     public function delete(ProductUnit $productUnit): View
     {
+         $this->checkAuthorizetion('unit.delete');
         return view('units.delete', compact('productUnit'));
     }
 
@@ -121,6 +127,7 @@ class ProductUnitController extends BaseController
      */
     public function destroy(ProductUnit $productUnit): RedirectResponse
     {
+        $this->checkAuthorizetion('unit.delete');
         try {
             $productUnit->delete();
             return Redirect::route('units.index')->with($this->sendWithSuccess('Unit Delete Success.'));

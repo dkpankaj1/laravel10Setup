@@ -64,10 +64,10 @@
                             <td>{{$user->role}}</td>
                             <td>{{$user->login_enable ? "Enable" : "Disable"}}</td>
                             <td class="text-end">
+                                @if($user->role != 'super admin')
                                 <a class="me-3" href="{{route('users.edit',$user)}}">
                                     <img src="assets/img/icons/edit.svg" alt="img" />
                                 </a>
-                                @if($user->role != 'super admin')
                                 <a class="me-3 d3l3t3btn" data-attr="{{route('users.delete',$user)}}">
                                     <img src="assets/img/icons/delete.svg" alt="img" />
                                 </a>

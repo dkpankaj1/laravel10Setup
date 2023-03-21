@@ -21,6 +21,8 @@ class UsersController extends BaseController
      */
     public function index()
     {
+        $this->checkAuthorizetion('users.show');
+
         $alluser = User::all();
 
         $users = [];
@@ -42,6 +44,8 @@ class UsersController extends BaseController
      */
     public function create()
     {
+        $this->checkAuthorizetion('users.create');
+
         $roles = Role::where('name', '!=', 'super admin')->get();
         return view('users.create', compact('roles'));
     }
@@ -51,6 +55,8 @@ class UsersController extends BaseController
      */
     public function store(Request $request): RedirectResponse
     {
+        $this->checkAuthorizetion('users.create');
+
         $request->validate([
             'name'          => ['required', 'string', 'max:255'],
             'email'         => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
@@ -90,6 +96,8 @@ class UsersController extends BaseController
      */
     public function edit(User $user)
     {
+        $this->checkAuthorizetion('users.edit');
+        
         $roles = Role::where('name', '!=', 'super admin')->get();
         $user->role = $user->getRoleNames()[0];
         return view('users.edit', compact('user', 'roles'));
@@ -100,6 +108,8 @@ class UsersController extends BaseController
      */
     public function update(Request $request, User $user)
     {
+        $this->checkAuthorizetion('users.edit');
+
         $request->validate([
             'name'          => ['required', 'string', 'max:255'],
             'email'         => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $user->id],
@@ -109,13 +119,20 @@ class UsersController extends BaseController
 
 
         try {
-            $user->update([
-                'name'          => $request->name ?? $user->name,
-                'email'         => $request->email ?? $user->email,
-                'login_enable'  => $request->login_enable ?? $user->login_enable
-            ]);
 
-            $user->syncRoles($request->role);
+            if (in_array('super admin',(array)$user->getRoleNames())) {
+                $user->update([
+                    'name'          => $request->name ?? $user->name,
+                    'email'         => $request->email ?? $user->email,
+                ]);
+            } else {
+                $user->update([
+                    'name'          => $request->name ?? $user->name,
+                    'email'         => $request->email ?? $user->email,
+                    'login_enable'  => $request->login_enable ?? $user->login_enable
+                ]);
+                $user->syncRoles($request->role ?? (array)$user->getRoleNames());
+            }
 
             return Redirect::route('users.index')->with($this->sendWithSuccess('Users Update Success'));
         } catch (\Exception $e) {
@@ -128,6 +145,8 @@ class UsersController extends BaseController
      */
     public function delete(User $user): View
     {
+        $this->checkAuthorizetion('users.delete');
+
         return view('users.delete', compact('user'));
     }
 
@@ -136,6 +155,8 @@ class UsersController extends BaseController
      */
     public function destroy(User $user)
     {
+        $this->checkAuthorizetion('users.delete');
+
         try {
             $user->delete();
             return Redirect::back()->with($this->sendWithSuccess('Users Delete Success.'));

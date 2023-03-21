@@ -16,6 +16,7 @@ class WarehouseController extends BaseController
      */
     public function index(): View
     {
+        $this->checkAuthorizetion('warehouse.show');
         $warehouses = Warehouse::all();
         return view('warehouse.list', compact('warehouses'));
     }
@@ -25,6 +26,7 @@ class WarehouseController extends BaseController
      */
     public function create(): View
     {
+        $this->checkAuthorizetion('warehouse.create');
         return view('warehouse.create');
     }
 
@@ -33,6 +35,7 @@ class WarehouseController extends BaseController
      */
     public function store(Request $request): RedirectResponse
     {
+        $this->checkAuthorizetion('warehouse.create');
         $request->validate([
             'name'          => ['required', 'unique:warehouses,name'],
             'email'         => ['required'],
@@ -69,6 +72,7 @@ class WarehouseController extends BaseController
      */
     public function edit(Warehouse $warehouse): View
     {
+        $this->checkAuthorizetion('warehouse.edit');
         return view('warehouse.edit', compact('warehouse'));
     }
 
@@ -77,6 +81,7 @@ class WarehouseController extends BaseController
      */
     public function update(Request $request, Warehouse $warehouse): RedirectResponse
     {
+        $this->checkAuthorizetion('warehouse.edit');
         $request->validate([
             'name'          => ['required', 'unique:warehouses,name,' . $warehouse->id],
             'email'         => ['required'],
@@ -105,6 +110,7 @@ class WarehouseController extends BaseController
      */
     public function delete(Warehouse $warehouse): View
     {
+        $this->checkAuthorizetion('warehouse.delete');
         return view('warehouse.delete', compact('warehouse'));
     }
 
@@ -114,6 +120,7 @@ class WarehouseController extends BaseController
      */
     public function destroy(Warehouse $warehouse): RedirectResponse
     {
+        $this->checkAuthorizetion('warehouse.delete');
         try {
             $warehouse->delete();
             return Redirect::back()->with($this->sendWithSuccess('Warehouse Delete Success.'));

@@ -15,8 +15,10 @@ class CustomerController extends BaseController
     /**
      * Display a listing of the resource.
      */
-    public function index():View
+    public function index(): View
     {
+        $this->checkAuthorizetion('customer.show');
+
         $customers = $this->getAllRecord(new Customer());
         return view('customer.list', compact('customers'));
     }
@@ -26,14 +28,18 @@ class CustomerController extends BaseController
      */
     public function create()
     {
+        $this->checkAuthorizetion('customer.create');
+
         return view('customer.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request):RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
+        $this->checkAuthorizetion('customer.create');
+
         $validated = $request->validate([
             'name'      => ["required"],
             'phone'     => ["required"],
@@ -70,16 +76,20 @@ class CustomerController extends BaseController
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Customer $customer):View
+    public function edit(Customer $customer): View
     {
+        $this->checkAuthorizetion('customer.edit');
+
         return view('customer.edit', compact('customer'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Customer $customer):RedirectResponse
+    public function update(Request $request, Customer $customer): RedirectResponse
     {
+        $this->checkAuthorizetion('customer.edit');
+
         $validated = $request->validate([
             'name'      => ["required"],
             'phone'     => ["required"],
@@ -109,6 +119,8 @@ class CustomerController extends BaseController
      */
     public function delete(Customer $customer): View
     {
+        $this->checkAuthorizetion('customer.delete');
+
         return view('customer.delete', compact('customer'));
     }
 
@@ -116,8 +128,10 @@ class CustomerController extends BaseController
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Customer $customer):RedirectResponse
+    public function destroy(Customer $customer): RedirectResponse
     {
+        $this->checkAuthorizetion('customer.delete');
+
         try {
             $customer->delete();
             return Redirect::back()->with($this->sendWithSuccess('Customer Delete Success.'));

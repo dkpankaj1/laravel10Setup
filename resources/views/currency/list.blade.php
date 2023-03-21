@@ -10,8 +10,10 @@
                 {{Breadcrumbs::render('currency')}}
             </x-slot>
 
+            @can('currency.create')
             <a class="btn btn-added" href="{{route('currency.create')}}"><img src="assets/img/icons/plus.svg" alt="img"
                     class="me-1" />Add New Currency</a>
+            @endcan
         </x-page-header-with-btn>
 
     </x-slot>
@@ -64,12 +66,18 @@
                             <td>{{$curency->symbol}}</td>
                             <td>{{$curency->description}}</td>
                             <td class="text-end">
+
+                                @can('currency.edit')
                                 <a class="me-3" href="{{route('currency.edit',$curency)}}">
                                     <img src="assets/img/icons/edit.svg" alt="img" />
                                 </a>
+                                @endcan
+
+                                @can('currency.delete')
                                 <a class="me-3 d3l3t3btn" data-attr="{{route('currency.delete',$curency)}}">
                                     <img src="assets/img/icons/delete.svg" alt="img" />
                                 </a>
+                                @endcan
                             </td>
                         </tr>
                         @endforeach

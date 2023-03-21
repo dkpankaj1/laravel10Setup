@@ -23,6 +23,8 @@ class SystemSettingController extends BaseController
      */
     public function show(SystemSetting $systemSetting): View
     {
+        $this->checkAuthorizetion('system.settion.show');
+
         $defaultTimeZone = $this->defaultTimeZone;
         $defaultDateFormat = $this->defaultDateFormat;
         $appSessions = ApplicationSession::all();
@@ -44,6 +46,7 @@ class SystemSettingController extends BaseController
      */
     public function update(Request $request, SystemSetting $systemSetting): RedirectResponse
     {
+        $this->checkAuthorizetion('system.settion.edit');
 
         $validated = $request->validate([
             'company_name'          => ['required'],

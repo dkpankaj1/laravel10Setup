@@ -13,6 +13,8 @@ class RolesAndPermissionsController extends BaseController
     // List Roles
     public function listRole(): View
     {
+        $this->checkAuthorizetion('roles.show');
+        
         // $roleList = Role::all();
         $roleList = Role::withCount('users')->get();
         return view('roles.list', ['roles' => $roleList]);
@@ -21,12 +23,15 @@ class RolesAndPermissionsController extends BaseController
     // Create Role
     public function createRole(): View
     {
+         $this->checkAuthorizetion('roles.create');
         return view('roles.create');
     }
 
     // Store Role
     public function storeRole(Request $request): RedirectResponse
     {
+         $this->checkAuthorizetion('roles.create');
+
         $validated = $request->validate([
             'name'          => ["required", "unique:roles,name"],
             'description'   => "required",
@@ -45,7 +50,7 @@ class RolesAndPermissionsController extends BaseController
     // Edit Role
     public function editRole(Role $role): View
     {
-        // abort_if(Gate::denies('admin.roles.edit'), Response::HTTP_FORBIDDEN, '403 forbidden');
+         $this->checkAuthorizetion('roles.edit');
 
         $hasPermission = [];
         foreach ($role->permissions as $permission)
@@ -57,7 +62,7 @@ class RolesAndPermissionsController extends BaseController
     // Update Role
     public function updateRole(Request $request, Role $role): RedirectResponse
     {
-        // abort_if(Gate::denies('admin.roles.edit'), Response::HTTP_FORBIDDEN, '403 forbidden');
+        $this->checkAuthorizetion('roles.edit');
 
         $validated = $request->validate([
             'name'          => ["required", 'unique:roles,name,' . $role->id],
@@ -77,7 +82,7 @@ class RolesAndPermissionsController extends BaseController
     // delete Role
     public function deleteRole(Role $role): View
     {
-        // abort_if(Gate::denies('admin.roles.edit'), Response::HTTP_FORBIDDEN, '403 forbidden');       
+         $this->checkAuthorizetion('roles.delete');      
         return view('roles.delete',compact('role'));
         
     }
@@ -85,7 +90,7 @@ class RolesAndPermissionsController extends BaseController
     // destroy Role
     public function destroyRole(Role $role): RedirectResponse
     {
-        // abort_if(Gate::denies('admin.roles.edit'), Response::HTTP_FORBIDDEN, '403 forbidden');
+        $this->checkAuthorizetion('roles.delete');
 
         $prevent_role = ['super_admin','admin'];
         if(!in_array($role->name,$prevent_role)){

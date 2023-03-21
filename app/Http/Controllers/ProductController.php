@@ -22,6 +22,7 @@ class ProductController extends BaseController
      */
     public function index(): View
     {
+        $this->checkAuthorizetion('product.show');
         $products = $this->getAllRecord(new Product());
 
         $showProduct = [];
@@ -53,6 +54,7 @@ class ProductController extends BaseController
      */
     public function create(): View
     {
+        $this->checkAuthorizetion('product.create');
         $categories = Category::all();
         $ProductUnits = ProductUnit::all();
         $texTypes = TexType::all();
@@ -65,6 +67,7 @@ class ProductController extends BaseController
      */
     public function store(Request $request): RedirectResponse
     {
+         $this->checkAuthorizetion('product.create');
         // Validate Data
         $validated = $request->validate([
 
@@ -129,6 +132,7 @@ class ProductController extends BaseController
      */
     public function edit(Product $product): View
     {
+         $this->checkAuthorizetion('product.edit');
         $categories = Category::all();
         $ProductUnits = ProductUnit::all();
         $texTypes = TexType::all();
@@ -141,6 +145,7 @@ class ProductController extends BaseController
      */
     public function update(Request $request, Product $product): RedirectResponse
     {
+         $this->checkAuthorizetion('product.edit');
         // Validate Data
         $validated = $request->validate([
 
@@ -196,6 +201,7 @@ class ProductController extends BaseController
      */
     public function delete(Product $product): View
     {
+         $this->checkAuthorizetion('product.delete');
         return view('product.delete', compact('product'));
     }
 
@@ -204,6 +210,7 @@ class ProductController extends BaseController
      */
     public function destroy(Product $product): RedirectResponse
     {
+        $this->checkAuthorizetion('product.delete');
         try {
             $product->delete();
             return Redirect::back()->with($this->sendWithSuccess('Product Delete Success.'));

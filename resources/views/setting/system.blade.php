@@ -189,12 +189,13 @@
                             @enderror
                         </div>
                     </div>
-
+                    @can('setting.system.edit')
                     <div class="row">
                         <div class="col-lg-12">
                             <button type="submit" class="btn btn-submit me-2">Update</button>
                         </div>
                     </div>
+                    @endcan
                 </div>
             </form>
         </div>

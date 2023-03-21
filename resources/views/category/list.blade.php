@@ -10,8 +10,11 @@
                 {{Breadcrumbs::render('category.index')}}
             </x-slot>
 
+            @can('category.create')
             <a class="btn btn-added" href="{{route('category.create')}}"><img src="assets/img/icons/plus.svg" alt="img"
                     class="me-1" />Add New Category</a>
+            @endcan
+
         </x-page-header-with-btn>
 
     </x-slot>
@@ -60,12 +63,18 @@
                             <td>{{$category->name}}</td>
                             <td>{{$category->description}}</td>
                             <td class="text-end">
+                                @can('category.edit')
                                 <a class="me-3" href="{{route('category.edit',$category)}}">
                                     <img src="assets/img/icons/edit.svg" alt="img" />
                                 </a>
+                                @endcan
+
+                                @can('category.delete')
                                 <a class="me-3 d3l3t3btn" data-attr="{{route('category.delete',$category)}}">
                                     <img src="assets/img/icons/delete.svg" alt="img" />
                                 </a>
+                                @endcan
+
                             </td>
                         </tr>
                         @endforeach

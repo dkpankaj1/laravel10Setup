@@ -8,7 +8,8 @@ use Config;
 use DB;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
-use Nette\Utils\Strings;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Http\Response;
 
 class BaseController extends Controller
 {
@@ -96,6 +97,11 @@ class BaseController extends Controller
             $currentSession = session()->get(config('app.appSession'))['id'];
         }
         return  $currentSession;
+    }
+
+    // check permission
+    public function checkAuthorizetion($permission){
+        abort_if(Gate::denies($permission), Response::HTTP_FORBIDDEN, '403 forbidden');
     }
 
 }

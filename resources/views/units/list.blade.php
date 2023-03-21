@@ -6,8 +6,11 @@
             <x-slot name="breadcrumbs">
                 {{Breadcrumbs::render('units.index')}}
             </x-slot>
+
+            @can('units.create')
             <a class="btn btn-added" href="{{route('units.create')}}"><img src="assets/img/icons/plus.svg" alt="img"
                     class="me-1" />Add New Unit</a>
+            @endcan
         </x-page-header-with-btn>
     </x-slot>
 
@@ -53,7 +56,7 @@
                     </thead>
                     <tbody>
                         @foreach($units as $unit)
-                        
+
                         <tr>
                             <td>UNT#{{$unit->id}}</td>
                             <td>{{$unit->name}}</td>
@@ -66,12 +69,17 @@
                             </td>
                             <td>{{$unit->description}}</td>
                             <td class="text-end">
+                                @can('units.edit')
                                 <a class="me-3" href="{{route('units.edit',$unit)}}">
                                     <img src="assets/img/icons/edit.svg" alt="img" />
                                 </a>
+                                @endcan
+
+                                @can('units.delete')
                                 <a class="me-3 d3l3t3btn" data-attr="{{route('units.delete',$unit)}}">
                                     <img src="assets/img/icons/delete.svg" alt="img" />
                                 </a>
+                                @endcan
                             </td>
                         </tr>
                         @endforeach

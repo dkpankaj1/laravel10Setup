@@ -15,6 +15,8 @@ class CategoryController extends BaseController
      */
     public function index(): View
     {
+        $this->checkAuthorizetion('category.show');
+
         $categorys = Category::all();
         return view('category.list', compact('categorys'));
     }
@@ -24,6 +26,8 @@ class CategoryController extends BaseController
      */
     public function create(): View
     {
+        $this->checkAuthorizetion('category.create');
+
         return view('category.create');
     }
 
@@ -32,6 +36,8 @@ class CategoryController extends BaseController
      */
     public function store(Request $request): RedirectResponse
     {
+        $this->checkAuthorizetion('category.create');
+
         $request->validate([
             'name'          => ['required', 'unique:warehouses,name'],
             'description'   => ['nullable'],
@@ -60,16 +66,20 @@ class CategoryController extends BaseController
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category):View
+    public function edit(Category $category): View
     {
+        $this->checkAuthorizetion('category.edit');
+
         return view('category.edit', compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category):RedirectResponse
+    public function update(Request $request, Category $category): RedirectResponse
     {
+        $this->checkAuthorizetion('category.edit');
+
         $request->validate([
             'name'          => ['required', 'unique:warehouses,name,' . $category->id],
             'description'   => ['nullable']
@@ -92,14 +102,18 @@ class CategoryController extends BaseController
      */
     public function delete(Category $category): View
     {
+        $this->checkAuthorizetion('category.delete');
+
         return view('category.delete', compact('category'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category):RedirectResponse
+    public function destroy(Category $category): RedirectResponse
     {
+        $this->checkAuthorizetion('category.delete');
+
         try {
             $category->delete();
             return Redirect::back()->with($this->sendWithSuccess('Category Delete Success.'));
