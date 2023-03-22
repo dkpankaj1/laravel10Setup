@@ -74,6 +74,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('product/download/sample', [ProductController::class, 'downloadSample'])->name('product.download.sample');
     
     Route::get('product/barcode/{product}/generate', [ProductController::class, 'barcodeGenerate'])->name('product.barcode.generate');
+
+    Route::get('product/search', [ProductController::class, 'search'])->name('product.search');
     //  :: End  product 
 
     //  :: Begin product unit 

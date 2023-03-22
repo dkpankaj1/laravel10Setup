@@ -10,7 +10,7 @@
         <div class="barcode-item style40">
             <span class="barcode-name">{{$product->name}}</span>
              <div textmargin="0" fontoptions="bold" class="barcode">
-                 {!! DNS1D::getBarcodeSVG($product->barcode, 'C128',1,35,'black',true) !!}
+                 {!! DNS1D::getBarcodeSVG($product->barcode, $product->BarcodeType->name,1,35,'black',true) !!}
             </div>
         </div>
         @endfor

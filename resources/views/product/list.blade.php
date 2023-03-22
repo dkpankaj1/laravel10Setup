@@ -86,7 +86,7 @@
                                 @endcan
 
                                 @can('product.barcode.generate')
-                                <a class="me-3" href="{{route('product.barcode.generate',$product)}}" title="Barcode">
+                                <a class="me-3" href="{{route('product.barcode.generate',$product)}}" target="_blank" title="Barcode">
                                     <img src="{{asset('assets/img/icons/upcscan.svg')}}" alt="img" />
                                 </a>
                                 @endcan
