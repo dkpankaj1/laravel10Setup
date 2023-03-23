@@ -79,6 +79,22 @@ Breadcrumbs::for('product.barcode.generate', function ($trail,$product) {
 });
 // :: End Customer ::
 
+// ::Begin Customer ::
+Breadcrumbs::for('purchase', function ($trail) {
+    $trail->push('Purchase', route('purchase.index'));
+});
+Breadcrumbs::for('purchase.create', function ($trail) {
+    $trail->parent('purchase');
+    $trail->push('Create', route('purchase.create'));
+});
+Breadcrumbs::for('purchase.edit', function ($trail, $purchase) {
+    $trail->parent('purchase');
+    $trail->push($purchase->name);
+    $trail->push('Edit', route('purchase.edit', $purchase));
+});
+// :: End Customer ::
+
+
 
 // :: Begin Role And Permission ::
 Breadcrumbs::for('roles', function ($trail) {

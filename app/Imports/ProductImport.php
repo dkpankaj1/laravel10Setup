@@ -26,7 +26,7 @@ class ProductImport implements ToModel,WithHeadingRow,WithValidation
             'description'       =>  $row['description'],
             'cost'              =>  $row['cost'],
             'price'             =>  $row['price'],
-            'order_tex'         =>  $row['order_tex'] ? $row['order_tex'] : 0,
+            'net_tex'           =>  $row['net_tex'] ? $row['net_tex'] : 0,
             'tex_type_id'       =>  $row['tex_type'],
             'discount'          =>  $row['discount'] ? $row['discount'] : 0,
             'stock_alert'       =>  $row['stack_alert'] ? $row['stack_alert'] : 0,

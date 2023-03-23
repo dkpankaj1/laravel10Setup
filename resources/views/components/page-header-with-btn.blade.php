@@ -1,6 +1,6 @@
 <div class="page-header">
     <div class="page-title">
-        <h4>{{$title}}</h4>
+        <h4 class="text-uppercase">{{$title}}</h4>
         <h6>{{$breadcrumbs}}</h6>
     </div>
     <div class="page-btn">

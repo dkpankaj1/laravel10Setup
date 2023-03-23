@@ -50,6 +50,14 @@ class RolePermissionSeeder extends Seeder
         Permission::create(['name' => 'product.barcode.generate']);
         # :: End permission for product :: #
 
+        # :: Begin permission for purchase :: #
+        Permission::create(['name' => 'purchase.show']);
+        Permission::create(['name' => 'purchase.create']);
+        Permission::create(['name' => 'purchase.edit']);
+        Permission::create(['name' => 'purchase.delete']);
+        # :: End permission for purchase :: #
+
+
         # :: Begin permission for Role :: #
         Permission::create(['name' => 'roles.show']);
         Permission::create(['name' => 'roles.create']);

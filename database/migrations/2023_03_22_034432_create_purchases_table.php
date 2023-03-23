@@ -23,7 +23,7 @@ return new class extends Migration
             $table->unsignedBigInteger('order_status');
             $table->unsignedBigInteger('payment_status');
             $table->unsignedBigInteger('session_id');
-            $table->tex('description');
+            $table->text('description');
 
             $table->timestamps();
         });

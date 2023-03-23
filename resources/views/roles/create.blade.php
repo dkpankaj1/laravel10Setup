@@ -200,7 +200,45 @@
                                             </li>
                                             <li>
                                                 <label class="inputcheck">Barcode Generate
-                                                    <input type="checkbox" name="permission[]" value="product.barcode.generate" />
+                                                    <input type="checkbox" name="permission[]"
+                                                        value="product.barcode.generate" />
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                {{-- ------------------------------ --}}
+
+
+                                {{-- permission for purchase management --}}
+                                <li>
+                                    <h4>Purchase Management</h4>
+                                    <div class="input-checkset">
+                                        <ul>
+                                            <li>
+                                                <label class="inputcheck">View
+                                                    <input type="checkbox" name="permission[]" value="purchase.show" />
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="inputcheck">Create
+                                                    <input type="checkbox" name="permission[]"
+                                                        value="purchase.create" />
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="inputcheck">Edit
+                                                    <input type="checkbox" name="permission[]" value="purchase.edit" />
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="inputcheck">Delete
+                                                    <input type="checkbox" name="permission[]"
+                                                        value="purchase.delete" />
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </li>

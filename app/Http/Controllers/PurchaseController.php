@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Purchase;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class PurchaseController extends Controller
@@ -10,9 +11,9 @@ class PurchaseController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index():View
     {
-        //
+        return view('purchase.list');
     }
 
     /**
@@ -20,7 +21,7 @@ class PurchaseController extends Controller
      */
     public function create()
     {
-        //
+        return view('purchase.create');
     }
 
     /**

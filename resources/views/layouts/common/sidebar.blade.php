@@ -8,6 +8,22 @@
                             Dashboard</span> </a>
                 </li>
 
+                @canany(['purchase.show','purchase.create','purchase.show'])
+                <li class="submenu">
+                    <a href="javascript:void(0);"><img src="{{asset('assets/img/icons/purchase1.svg')}}" alt="img"><span>
+                            Purchase</span> <span class="menu-arrow"></span></a>
+                    <ul>
+                        @can('product.show')
+                        <li><a href="{{route('purchase.index')}}">Purchase List</a></li>
+                        @endcan
+                        @can('product.create')
+                        <li><a href="{{route('purchase.create')}}">Add Purchase</a></li>
+                        @endcan
+                    </ul>
+                </li>
+                @endcanany
+
+
                 @canany(['product.show','product.create','category.show', 'category.create','product.import'])
                 <li class="submenu">
                     <a href="javascript:void(0);"><img src="{{asset('assets/img/icons/product.svg')}}" alt="img"><span>

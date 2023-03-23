@@ -230,6 +230,44 @@
                                 </li>
                                 {{-- ------------------------------ --}}
 
+                                 {{-- permission for purchase management --}}
+                                 <li>
+                                    <h4>Purchase Management</h4>
+                                    <div class="input-checkset">
+                                        <ul>
+                                            <li>
+                                                <label class="inputcheck">View
+                                                    <input type="checkbox" name="permission[]" value="purchase.show" 
+                                                    {{in_array("purchase.show",$hasPermission) ? "checked" :"" }}/>
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="inputcheck">Create
+                                                    <input type="checkbox" name="permission[]" value="purchase.create" 
+                                                    {{in_array("purchase.create",$hasPermission) ? "checked" :"" }}/>
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="inputcheck">Edit
+                                                    <input type="checkbox" name="permission[]" value="purchase.edit" 
+                                                    {{in_array("purchase.edit",$hasPermission) ? "checked" :"" }}/>
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="inputcheck">Delete
+                                                    <input type="checkbox" name="permission[]" value="purchase.delete" 
+                                                    {{in_array("purchase.delete",$hasPermission) ? "checked" :"" }}/>
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                {{-- ------------------------------ --}}
+
                                 {{-- permission for role management --}}
                                 <li>
                                     <h4>Role Management</h4>

@@ -22,7 +22,7 @@ class ProductSampleExport implements FromCollection
         $record->description    = "DESCRIPTION";
         $record->cost           = "COST";
         $record->price          = "PRICE";
-        $record->order_tex      = "ORDER_TEX";
+        $record->net_tex      = "ORDER_TEX";
         $record->tex_type       = "TEX_TYPE";
         $record->discount       = "DISCOUNT";
         $record->stock_alert    = "STACK_ALERT";
@@ -41,7 +41,7 @@ class ProductSampleExport implements FromCollection
         $record->description    = "test description";
         $record->cost           = "250";
         $record->price          = "320";
-        $record->order_tex      = "0";
+        $record->net_tex        = "0";
         $record->tex_type       = "1";
         $record->discount       = "0";
         $record->stock_alert    = "5";

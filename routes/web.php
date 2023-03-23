@@ -9,6 +9,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductUnitController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\RolesAndPermissionsController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\SystemSettingController;
@@ -65,18 +66,24 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('product', ProductController::class)->only(['index', 'create', 'store', 'edit', 'update']);
     Route::get('product/{product}/delete', [ProductController::class, 'delete'])->name('product.delete');
     Route::delete('product/{product}/delete', [ProductController::class, 'destroy'])->name('product.destroy');
-    
+
     Route::get('product/export/excle', [ProductController::class, 'exportExcle'])->name('product.export.excle');
 
     Route::get('product/import', [ProductController::class, 'productImport'])->name('product.import');
     Route::post('product/import', [ProductController::class, 'importExcle'])->name('product.import');
 
     Route::get('product/download/sample', [ProductController::class, 'downloadSample'])->name('product.download.sample');
-    
+
     Route::get('product/barcode/{product}/generate', [ProductController::class, 'barcodeGenerate'])->name('product.barcode.generate');
 
     Route::get('product/search', [ProductController::class, 'search'])->name('product.search');
     //  :: End  product 
+
+    //  :: Begin Purchase 
+    Route::resource('purchase', PurchaseController::class)->only(['index', 'create', 'store', 'edit', 'update']);
+    Route::get('product/{purchase}/delete', [PurchaseController::class, 'delete'])->name('purchase.delete');
+    Route::delete('product/{purchase}/delete', [PurchaseController::class, 'destroy'])->name('purchase.destroy');
+    //  :: End Purchase
 
     //  :: Begin product unit 
     Route::resource('units', ProductUnitController::class)->only(['index', 'create', 'store']);

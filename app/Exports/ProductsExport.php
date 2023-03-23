@@ -23,7 +23,7 @@ class ProductsExport implements FromCollection
         $record->name           = "NAME";
         $record->cost           = "COST";
         $record->price          = "PRICE";
-        $record->order_tex      = "ORDER_TEX (%)";
+        $record->net_tex        = "NET_TEX (%)";
         $record->tex_type       = "TEX_TYPE";
         $record->discount       = "DISCOUNT (%)";
         $record->stock_alert    = "STOCK_ALERT";
@@ -42,7 +42,7 @@ class ProductsExport implements FromCollection
             $record->name           = $product->name;
             $record->cost           = $product->cost;
             $record->price          = $product->price;
-            $record->order_tex      = $product->order_tex;
+            $record->net_tex        = $product->net_tex;
             $record->tex_type       = $product->TexType->name;
             $record->discount       = $product->discount;
             $record->stock_alert    = $product->stock_alert;
