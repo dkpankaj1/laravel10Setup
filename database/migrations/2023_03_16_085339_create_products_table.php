@@ -21,7 +21,7 @@ return new class extends Migration
             $table->text('description');
             $table->double('cost');
             $table->double('price');
-            $table->integer('order_tex')->default(0);
+            $table->integer('net_tex')->default(0);
             $table->unsignedBigInteger('tex_type_id')->nullable();
             $table->integer('discount')->default(0);
             $table->integer('stock_alert')->default(0);

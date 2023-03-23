@@ -70,7 +70,7 @@
                             <td>{{$product->name}}</td>
                             <td>{{$product->cost}}</td>
                             <td>{{$product->price}}</td>
-                            <td>{{$product->order_tex}}</td>
+                            <td>{{$product->net_tex}}</td>
                             <td>{{$product->tex_type}}</td>
                             <td>{{$product->discount}}</td>
                             <td>{{$product->stock_alert}}</td>

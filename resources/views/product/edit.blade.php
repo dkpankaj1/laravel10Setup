@@ -181,11 +181,11 @@
                         <div class="form-group">
                             <label>Order Tex</label>
                             <div class="input-group">
-                                <input type="text" value="{{old('order_tex',$product->order_tex)}}" class="form-control"
-                                    placeholder="Enate Orcer Tex" name="order_tex" />
+                                <input type="text" value="{{old('net_tex',$product->net_tex)}}" class="form-control"
+                                    placeholder="Enate Orcer Tex" name="net_tex" />
                                 <span class="input-group-text">%</span>
                             </div>
-                            @error('order_tex')
+                            @error('net_tex')
                             <div class="invalid-feedback d-block">{{$message}}</div>
                             @enderror
                         </div>

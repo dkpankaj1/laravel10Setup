@@ -17,7 +17,7 @@ class Product extends Model
         'description',
         'cost',
         'price',
-        'order_tex',
+        'net_tex',
         'tex_type_id',
         'discount',
         'stock_alert',

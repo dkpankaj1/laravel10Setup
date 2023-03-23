@@ -38,7 +38,7 @@ class ProductController extends BaseController
             $record->name           = $product->name;
             $record->cost           = $product->cost;
             $record->price          = $product->price;
-            $record->order_tex      = $product->order_tex;
+            $record->net_tex      = $product->net_tex;
             $record->tex_type       = $product->TexType->name;
             $record->discount       = $product->discount;
             $record->stock_alert    = $product->stock_alert;
@@ -83,7 +83,7 @@ class ProductController extends BaseController
             'description'       => ['required'],
             'cost'              => ['required'],
             'price'             => ['required'],
-            'order_tex'         => ['required'],
+            'net_tex'         => ['required'],
             'tex_type'          => ['required'],
             'discount'          => ['required'],
             'stock_alert'       => ['required'],
@@ -105,7 +105,7 @@ class ProductController extends BaseController
             'description'       =>  $validated['description'],
             'cost'              =>  $validated['cost'],
             'price'             =>  $validated['price'],
-            'order_tex'         =>  $validated['order_tex'] ? $validated['order_tex'] : 0,
+            'net_tex'         =>  $validated['net_tex'] ? $validated['net_tex'] : 0,
             'tex_type_id'       =>  $validated['tex_type'],
             'discount'          =>  $validated['discount'] ? $validated['discount'] : 0,
             'stock_alert'       =>  $validated['stock_alert'] ? $validated['stock_alert'] : 0,
@@ -161,7 +161,7 @@ class ProductController extends BaseController
             'description'       => ['required'],
             'cost'              => ['required'],
             'price'             => ['required'],
-            'order_tex'         => ['required'],
+            'net_tex'         => ['required'],
             'tex_type'          => ['required'],
             'discount'          => ['required'],
             'stock_alert'       => ['required'],
@@ -183,7 +183,7 @@ class ProductController extends BaseController
             'description'       =>  $validated['description'] ?? $product->description,
             'cost'              =>  $validated['cost'] ?? $product->cost,
             'price'             =>  $validated['price'] ?? $product->price,
-            'order_tex'         =>  $validated['order_tex'] ?? $product->order_tex,
+            'net_tex'         =>  $validated['net_tex'] ?? $product->net_tex,
             'tex_type_id'       =>  $validated['tex_type'] ?? $product->tex_type_id,
             'discount'          =>  $validated['discount'] ?? $product->discount,
             'stock_alert'       =>  $validated['stock_alert'] ?? $product->stock_alert,

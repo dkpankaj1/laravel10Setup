@@ -13,6 +13,18 @@ return new class extends Migration
     {
         Schema::create('purchases', function (Blueprint $table) {
             $table->id();
+            $table->string('purchases_date');
+            $table->unsignedBigInteger('warehouse_id');
+            $table->unsignedBigInteger('supplier_id');
+            $table->double('order_tex');
+            $table->double('shipping');
+            $table->double('discount');
+            $table->double('grand_total');
+            $table->unsignedBigInteger('order_status');
+            $table->unsignedBigInteger('payment_status');
+            $table->unsignedBigInteger('session_id');
+            $table->tex('description');
+
             $table->timestamps();
         });
     }
